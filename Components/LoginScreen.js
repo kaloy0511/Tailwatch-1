@@ -22,10 +22,6 @@ export default function LoginScreen({ navigation }) {
           <TouchableOpacity style={[styles.socialButton, { backgroundColor: "#fff", borderColor: "#999", borderWidth: 1 }]}>
             <FontAwesome name="google" size={20} color="#000" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Home")}>
-            <FontAwesome name="arrow-right" size={30} color="#000" />
-          </TouchableOpacity>
-
         </View>
 
         <View style={styles.checkboxContainer}>
@@ -38,9 +34,9 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.checkboxText}>Stay signed in</Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton}>
-          <FontAwesome name="arrow-right" size={30} color="#000" />
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Home")}>
+            <FontAwesome name="arrow-right" size={30} color="#000" />
+          </TouchableOpacity>
 
         {/* Navigate to SignUpScreen when clicked */}
         <TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate("SignUp")}>

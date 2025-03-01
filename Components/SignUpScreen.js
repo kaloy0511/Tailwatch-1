@@ -36,20 +36,17 @@ export default function SignUpScreen({ navigation }) {
         </View>
 
         {/* Sign-Up Button */}
-        <TouchableOpacity style={styles.signupButton}>
-          <Text style={styles.signupText}>Sign Up</Text>
-          <FontAwesome name="paw" size={20} color="#fff" style={{ marginLeft: 10 }} />
-        </TouchableOpacity>
-
-        {/* Already have an account? */}
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.bottomText}>Already have an account? Login</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.signupButton} onPress={() => navigation.navigate("Home")}>
           <Text style={styles.signupText}>Sign Up</Text>
         <FontAwesome name="paw" size={20} color="#fff" style={{ marginLeft: 10 }} />
         </TouchableOpacity>
 
+
+        {/* Already have an account? */}
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text style={styles.bottomText}>Already have an account? Login</Text>
+        </TouchableOpacity>
+        
       </View>
     </View>
   );
