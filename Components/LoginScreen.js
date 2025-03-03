@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
-import styles from "./LoginStyles";
+import styles from "../StyleSheet/LoginStyles";
 
 export default function LoginScreen({ navigation }) {
   const [staySignedIn, setStaySignedIn] = useState(false);

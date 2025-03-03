@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import styles from "./LoginStyles"; // Reusing the same styles
+import styles from "../StyleSheet/LoginStyles"; // Reusing the same styles
 
 export default function SignUpScreen({ navigation }) {
   return (

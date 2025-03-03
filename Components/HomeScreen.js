@@ -1,67 +1,64 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, StyleSheet } from "react-native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
+import homeStyles from "../StyleSheet/HomeStyle"; // Ensure the path is correct
 
-export default function HomeScreen({ navigation }) {
+const communityPosts = [
+  { id: "1", name: "Nicolas Cage", residence: "", post: "Random community post" },
+  { id: "2", name: "Omack G", residence: "", post: "Random community post" },
+];
+
+const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      {/* Top Navigation Bar */}
-      <View style={styles.topBar}>
-        <Image source={{ uri: "https://via.placeholder.com/50" }} style={styles.logo} />
-        <View style={styles.navLinks}>
-          <Text style={styles.navText}>Home</Text>
-          <Text style={styles.navText}>Adopt Pets</Text>
-          <Text style={styles.navText}>Report</Text>
-          <Text style={styles.navText}>Lost Pets</Text>
-        </View>
-        <FontAwesome name="cog" size={24} color="#000" style={styles.settingsIcon} />
+    <View style={homeStyles.container}>
+      {/* Header */}
+      <View style={homeStyles.header}>
+        <Image source={{ uri: "https://via.placeholder.com/50" }} style={homeStyles.logo} />
+        <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
+        <TouchableOpacity>
+          <Image source={{ uri: "https://via.placeholder.com/30" }} style={homeStyles.settingsIcon} />
+        </TouchableOpacity>
       </View>
-
-      {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <TextInput placeholder="What are you looking for?" style={styles.searchInput} />
-        <FontAwesome name="search" size={18} color="#000" style={styles.searchIcon} />
-      </View>
-
-      {/* Community Feed */}
-      <ScrollView style={styles.feedContainer}>
-        {[1, 2].map((item, index) => (
-          <View key={index} style={styles.postContainer}>
-            <View style={styles.postHeader}>
-              <Image source={{ uri: "https://via.placeholder.com/40" }} style={styles.profilePic} />
-              <View style={styles.userInfo}>
-                <Text style={styles.userName}>{index === 0 ? "Nicolas Cage" : "Omack G"}</Text>
-                <Text style={styles.userResidence}>Residence</Text>
+      
+      {/* Community Posts */}
+      <FlatList
+        data={communityPosts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={homeStyles.postContainer}>
+            <View style={homeStyles.profileSection}>
+              <Image source={{ uri: "https://via.placeholder.com/40" }} style={homeStyles.profileImage} />
+              <View>
+                <Text style={homeStyles.userName}>{item.name}</Text>
+                <Text style={homeStyles.residence}>Residence</Text>
               </View>
               <TouchableOpacity>
-                <Text style={styles.followText}>Follow</Text>
+                <Text style={homeStyles.followText}>Follow</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.postContent}>
-              <Text style={styles.postText}>Random community post</Text>
+            <View style={homeStyles.postBox}>
+              <Text>{item.post}</Text>
             </View>
           </View>
-        ))}
-      </ScrollView>
-
-      {/* Bottom Navigation Bar */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navButton}>
-          <FontAwesome name="users" size={24} color="black" />
+        )}
+      />
+      
+      {/* Bottom Navigation */}
+      <View style={homeStyles.bottomNav}>
+        <TouchableOpacity>
+          <Text>🏠</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
-          <FontAwesome name="envelope" size={24} color="black" />
+        <TouchableOpacity>
+          <Text>✉️</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.navButton, styles.homeButton]}>
-          <FontAwesome name="home" size={30} color="black" />
+        <TouchableOpacity>
+          <Text>👥</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
-          <FontAwesome name="users" size={24} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.profileIcon}>
-          <Image source={{ uri: "https://via.placeholder.com/40" }} style={styles.profilePicSmall} />
+        <TouchableOpacity>
+          <Text>📷</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
+
+export default HomeScreen;
