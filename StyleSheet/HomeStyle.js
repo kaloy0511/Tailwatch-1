@@ -6,6 +6,7 @@ const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fceed3",
+    
   },
 
   header: {
@@ -40,6 +41,8 @@ const homeStyles = StyleSheet.create({
   postContainer: {
     padding: 10,
     borderBottomWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
     borderBottomColor: "#ccc",
     backgroundColor: "#fceed3",
   },
@@ -104,6 +107,13 @@ const homeStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  postImage: {
+    width: width * 0.9, // 90% of the screen width
+    height: width * 0.9, // Square ratio like Facebook posts
+    borderRadius: 10,
+    marginTop: 10,
+  }
+  
 });
 
 export default homeStyles;

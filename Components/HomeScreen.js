@@ -3,19 +3,31 @@ import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-
 import homeStyles from "../StyleSheet/HomeStyle"; // Ensure the path is correct
 
 const communityPosts = [
-  { id: "1", name: "Nicolas Cage", residence: "", post: "Random community post" },
-  { id: "2", name: "Omack G", residence: "", post: "Random community post" },
+  { 
+    id: "1", 
+    name: "Liam Carlo Amador", 
+    residence: "", 
+    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image: require("../assets/cat.jpg") // Adjusted path
+  },
+  { 
+    id: "2", 
+    name: "Ronn Bernard Belarmino", 
+    residence: "", 
+    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image: require("../assets/cat.jpg") // Adjusted path
+  },
 ];
 
 const HomeScreen = () => {
   return (
-    <View style={homeStyles.container}>
+    <View style={{ flex: 1 }}>
       {/* Header */}
       <View style={homeStyles.header}>
-        <Image source={{ uri: "https://via.placeholder.com/50" }} style={homeStyles.logo} />
+        <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.logo} />
         <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
         <TouchableOpacity>
-          <Image source={{ uri: "https://via.placeholder.com/30" }} style={homeStyles.settingsIcon} />
+          <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.settingsIcon} />
         </TouchableOpacity>
       </View>
       
@@ -23,10 +35,13 @@ const HomeScreen = () => {
       <FlatList
         data={communityPosts}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 80, flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={true}
         renderItem={({ item }) => (
           <View style={homeStyles.postContainer}>
             <View style={homeStyles.profileSection}>
-              <Image source={{ uri: "https://via.placeholder.com/40" }} style={homeStyles.profileImage} />
+              <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.profileImage} />
               <View>
                 <Text style={homeStyles.userName}>{item.name}</Text>
                 <Text style={homeStyles.residence}>Residence</Text>
@@ -37,6 +52,7 @@ const HomeScreen = () => {
             </View>
             <View style={homeStyles.postBox}>
               <Text>{item.post}</Text>
+              {item.image && <Image source={item.image} style={homeStyles.postImage} resizeMode="cover" />} 
             </View>
           </View>
         )}
