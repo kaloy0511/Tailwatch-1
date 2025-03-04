@@ -8,6 +8,7 @@ import LoginScreen from "./Components/LoginScreen";
 import ReportScreen from "./Components/ReportScreen";
 import SignUpScreen from "./Components/SignUpScreen";
 import AdoptScreen from "./Components/AdoptScreen";
+import LostScreen from "./Components/LostScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,8 @@ const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Report" component={ReportScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Adopt" component={AdoptScreen}/>
+        <Stack.Screen name="Adopt" component={AdoptScreen} />
+        <Stack.Screen name="Lost" component={LostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
