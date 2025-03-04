@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const ReportScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fdf6ec",
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
+export default ReportScreenStyles;

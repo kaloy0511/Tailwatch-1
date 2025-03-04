@@ -1,25 +1,28 @@
 import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native"; // Import navigation hook
 import homeStyles from "../StyleSheet/HomeStyle"; // Ensure the path is correct
 
 const communityPosts = [
   { 
     id: "1", 
     name: "Liam Carlo Amador", 
-    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: require("../assets/cat.jpg"), // Adjusted path
+    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: require("../assets/cat.jpg"),
     profile: require("../assets/Amador.jpg"),
   },
   { 
     id: "2", 
     name: "Ronn Bernard Belarmino", 
-    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: require("../assets/Dog.jpg"), // Adjusted path
+    post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: require("../assets/Dog.jpg"),
     profile: require("../assets/Belarmino.jpg"),
   },
 ];
 
 const HomeScreen = () => {
+  const navigation = useNavigation(); // FIX: Navigation Hook
+
   return (
     <View style={{ flex: 1 }}>
       {/* Header */}
@@ -45,12 +48,12 @@ const HomeScreen = () => {
           <Image source={require("../assets/Settings.png")} style={homeStyles.settingsIcon} />
         </TouchableOpacity>
       </View>
-      
+
       {/* Search Bar */}
       <View style={homeStyles.searchBarContainer}>
         <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
       </View>
-      
+
       {/* Community Posts */}
       <FlatList
         data={communityPosts}
@@ -64,7 +67,6 @@ const HomeScreen = () => {
               <Image source={item.profile} style={homeStyles.profileImage} />
               <View>
                 <Text style={homeStyles.userName}>{item.name}</Text>
-                <Text style={homeStyles.residence}>{item.residence}</Text>
               </View>
               <TouchableOpacity>
                 <Text style={homeStyles.followText}>Follow</Text>
@@ -77,7 +79,6 @@ const HomeScreen = () => {
           </View>
         )}
       />
-      
       {/* Bottom Navigation */}
       <View style={homeStyles.bottomNav}>
         <TouchableOpacity>
