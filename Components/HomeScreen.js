@@ -25,10 +25,30 @@ const HomeScreen = () => {
       {/* Header */}
       <View style={homeStyles.header}>
         <Image source={require("../assets/logo.png")} style={homeStyles.logo} />
-        <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
+        
+        <View style={homeStyles.navLinks}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Text style={homeStyles.navText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("AdoptPets")}>
+            <Text style={homeStyles.navText}>Adopt Pets</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Report")}>
+            <Text style={homeStyles.navText}>Report</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("LostPets")}>
+            <Text style={homeStyles.navText}>Lost Pets</Text>
+          </TouchableOpacity>
+        </View>
+        
         <TouchableOpacity>
           <Image source={require("../assets/Settings.png")} style={homeStyles.settingsIcon} />
         </TouchableOpacity>
+      </View>
+      
+      {/* Search Bar */}
+      <View style={homeStyles.searchBarContainer}>
+        <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
       </View>
       
       {/* Community Posts */}

@@ -1,11 +1,14 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get("window");
+const width = 375; // Standard mobile width
+const height = 667; // Standard mobile height
 
 const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fceed3",
+    width,
+    height,
   },
 
   header: {
@@ -14,33 +17,53 @@ const homeStyles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#aa708b",
     justifyContent: "space-between",
+    width,
+  },
+
+  navLinks: {
+    flexDirection: "row",
+    justifyContent: "center",
+    flexGrow: 1,
+    marginHorizontal: 5,
+  },
+
+  navText: {
+    fontSize: 13,
+    fontWeight: "bold",
+    color: "white",
+    marginHorizontal: 6,
   },
 
   logo: {
-    width: width * 0.12, // 12% of screen width
-    height: width * 0.12,
-    borderRadius: width * 0.06,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+  },
+
+  searchBarContainer: {
+    width: width * 0.9,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 6,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    alignSelf: "center",
+    marginVertical: 6,
   },
 
   searchBar: {
-    flex: 1,
-    backgroundColor: "white",
-    marginHorizontal: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#ccc",
+    width: "100%",
+    padding: 5,
   },
 
   settingsIcon: {
-    width: width * 0.08,
-    height: width * 0.08,
+    width: 26,
+    height: 26,
   },
 
   postContainer: {
     width: "100%",
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
     backgroundColor: "#fceed3",
@@ -49,24 +72,24 @@ const homeStyles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
-    paddingHorizontal: 15,
+    marginBottom: 6,
+    paddingHorizontal: 10,
   },
 
   profileImage: {
-    width: width * 0.1,
-    height: width * 0.1,
-    borderRadius: width * 0.05,
-    marginRight: 10,
+    width: 33,
+    height: 33,
+    borderRadius: 16.5,
+    marginRight: 6,
   },
 
   userName: {
     fontWeight: "bold",
-    fontSize: width * 0.045,
+    fontSize: 13,
   },
 
   residence: {
-    fontSize: width * 0.035,
+    fontSize: 11,
     color: "#777",
   },
 
@@ -74,51 +97,51 @@ const homeStyles = StyleSheet.create({
     color: "blue",
     marginLeft: "auto",
     fontWeight: "bold",
-    fontSize: width * 0.04,
+    fontSize: 11,
   },
 
   postBox: {
     width: "90%",
     alignSelf: "center",
-    padding: 15,
+    padding: 10,
     backgroundColor: "#dcdcdc",
-    borderRadius: 10,
+    borderRadius: 7,
   },
 
   postImage: {
     width: "100%",
     height: undefined,
-    aspectRatio: 1, // Ensures proper aspect ratio
-    borderRadius: 10,
-    marginTop: 10,
+    aspectRatio: 1,
+    borderRadius: 7,
+    marginTop: 6,
   },
 
   bottomNav: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 15,
+    paddingVertical: 10,
     backgroundColor: "#aa708b",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 14,
+    borderTopRightRadius: 14,
     alignItems: "center",
-    width: "100%",
+    width,
     position: "absolute",
     bottom: 0,
   },
 
   navIcon: {
-    width: width * 0.08,
-    height: width * 0.08,
+    width: 26,
+    height: 26,
   },
 
   homeIcon: {
-    width: width * 0.12,
-    height: width * 0.12,
+    width: 38,
+    height: 38,
     position: "absolute",
-    top: -20,
+    top: -16,
     backgroundColor: "#c28e9e",
-    padding: 10,
-    borderRadius: width * 0.06,
+    padding: 6,
+    borderRadius: 19,
     justifyContent: "center",
     alignItems: "center",
   },
