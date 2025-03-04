@@ -31,7 +31,9 @@ const AdoptScreen = () => {
     <View style={{ flex: 1 }}>
       {/* Header */}
       <View style={adoptStyles.header}>
-        <Image source={require("../assets/logo.png")} style={adoptStyles.logo} />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={require("../assets/logo.png")} style={adoptStyles.logo} />
+        </TouchableOpacity>
         <TextInput placeholder="What are you looking for?" style={adoptStyles.searchBar} />
       </View>
 
