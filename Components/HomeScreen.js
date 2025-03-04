@@ -14,7 +14,7 @@ const communityPosts = [
     id: "2", 
     name: "Ronn Bernard Belarmino", 
     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: require("../assets/cat.jpg"), // Adjusted path
+    image: require("../assets/Dog.jpg"), // Adjusted path
     profile: require("../assets/Belarmino.jpg"),
   },
 ];
