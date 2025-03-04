@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }) {
             checkedColor="#000" 
             containerStyle={{ padding: 0, margin: 0 }} 
           />
-          <Text style={styles.checkboxText}>Stay signed in</Text>
+          <Text style={styles.checkboxText}>Stay Signed in</Text>
         </View>
 
         <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Home")}>
