@@ -6,16 +6,16 @@ const communityPosts = [
   { 
     id: "1", 
     name: "Liam Carlo Amador", 
-    residence: "", 
     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: require("../assets/cat.jpg") // Adjusted path
+    image: require("../assets/cat.jpg"), // Adjusted path
+    profile: require("../assets/Amador.jpg"),
   },
   { 
     id: "2", 
     name: "Ronn Bernard Belarmino", 
-    residence: "", 
     post: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: require("../assets/cat.jpg") // Adjusted path
+    image: require("../assets/cat.jpg"), // Adjusted path
+    profile: require("../assets/Belarmino.jpg"),
   },
 ];
 
@@ -24,10 +24,10 @@ const HomeScreen = () => {
     <View style={{ flex: 1 }}>
       {/* Header */}
       <View style={homeStyles.header}>
-        <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.logo} />
+        <Image source={require("../assets/logo.png")} style={homeStyles.logo} />
         <TextInput style={homeStyles.searchBar} placeholder="What are you looking for?" />
         <TouchableOpacity>
-          <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.settingsIcon} />
+          <Image source={require("../assets/Settings.png")} style={homeStyles.settingsIcon} />
         </TouchableOpacity>
       </View>
       
@@ -41,10 +41,10 @@ const HomeScreen = () => {
         renderItem={({ item }) => (
           <View style={homeStyles.postContainer}>
             <View style={homeStyles.profileSection}>
-              <Image source={require("../assets/Belarmino.jpg")} style={homeStyles.profileImage} />
+              <Image source={item.profile} style={homeStyles.profileImage} />
               <View>
                 <Text style={homeStyles.userName}>{item.name}</Text>
-                <Text style={homeStyles.residence}>Residence</Text>
+                <Text style={homeStyles.residence}>{item.residence}</Text>
               </View>
               <TouchableOpacity>
                 <Text style={homeStyles.followText}>Follow</Text>

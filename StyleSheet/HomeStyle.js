@@ -6,7 +6,6 @@ const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fceed3",
-    
   },
 
   header: {
@@ -18,31 +17,31 @@ const homeStyles = StyleSheet.create({
   },
 
   logo: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: width * 0.12, // 12% of screen width
+    height: width * 0.12,
+    borderRadius: width * 0.06,
   },
 
   searchBar: {
     flex: 1,
     backgroundColor: "white",
     marginHorizontal: 10,
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "#ccc",
   },
 
   settingsIcon: {
-    width: 30,
-    height: 30,
+    width: width * 0.08,
+    height: width * 0.08,
   },
 
   postContainer: {
-    padding: 10,
+    width: "100%",
+    paddingVertical: 15,
     borderBottomWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
     borderBottomColor: "#ccc",
     backgroundColor: "#fceed3",
   },
@@ -51,21 +50,23 @@ const homeStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
+    paddingHorizontal: 15,
   },
 
   profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: width * 0.1,
+    height: width * 0.1,
+    borderRadius: width * 0.05,
     marginRight: 10,
   },
 
   userName: {
     fontWeight: "bold",
+    fontSize: width * 0.045,
   },
 
   residence: {
-    fontSize: 12,
+    fontSize: width * 0.035,
     color: "#777",
   },
 
@@ -73,47 +74,54 @@ const homeStyles = StyleSheet.create({
     color: "blue",
     marginLeft: "auto",
     fontWeight: "bold",
+    fontSize: width * 0.04,
   },
 
   postBox: {
-    padding: 20,
+    width: "90%",
+    alignSelf: "center",
+    padding: 15,
     backgroundColor: "#dcdcdc",
     borderRadius: 10,
+  },
+
+  postImage: {
+    width: "100%",
+    height: undefined,
+    aspectRatio: 1, // Ensures proper aspect ratio
+    borderRadius: 10,
+    marginTop: 10,
   },
 
   bottomNav: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 15,
+    paddingVertical: 15,
     backgroundColor: "#aa708b",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     alignItems: "center",
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
   },
 
   navIcon: {
-    width: 30,
-    height: 30,
+    width: width * 0.08,
+    height: width * 0.08,
   },
 
   homeIcon: {
-    width: 50,
-    height: 50,
+    width: width * 0.12,
+    height: width * 0.12,
     position: "absolute",
-    top: -25,
+    top: -20,
     backgroundColor: "#c28e9e",
     padding: 10,
-    borderRadius: 30,
+    borderRadius: width * 0.06,
     justifyContent: "center",
     alignItems: "center",
   },
-  postImage: {
-    width: width * 0.9, // 90% of the screen width
-    height: width * 0.9, // Square ratio like Facebook posts
-    borderRadius: 10,
-    marginTop: 10,
-  }
-  
 });
 
 export default homeStyles;
