@@ -1,69 +1,67 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const width = 375; // Standard mobile width
-const height = 667; // Standard mobile height
+const { width, height } = Dimensions.get("window"); // Get actual screen size
 
 const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fceed3",
-    width,
-    height,
+    width: "100%", // Responsive width
   },
 
   header: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
+    padding: width * 0.03, // Scales with screen size
     backgroundColor: "#aa708b",
     justifyContent: "space-between",
-    width,
+    width: "100%", // Responsive width
   },
 
   navLinks: {
     flexDirection: "row",
     justifyContent: "center",
     flexGrow: 1,
-    marginHorizontal: 5,
+    marginHorizontal: width * 0.015, // Responsive spacing
   },
 
   navText: {
-    fontSize: 13,
+    fontSize: width * 0.035, // Scales text size
     fontWeight: "bold",
     color: "white",
-    marginHorizontal: 6,
+    marginHorizontal: width * 0.015, // Responsive spacing
   },
 
   logo: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: width * 0.1, // 10% of screen width
+    height: width * 0.1,
+    borderRadius: width * 0.05, // Half for perfect circle
   },
 
   searchBarContainer: {
-    width: width * 0.9,
+    width: "90%", // Responsive width
     backgroundColor: "white",
-    borderRadius: 20,
-    padding: 6,
+    borderRadius: width * 0.05,
+    padding: width * 0.015,
     borderWidth: 1,
     borderColor: "#ccc",
     alignSelf: "center",
-    marginVertical: 6,
+    marginVertical: width * 0.02,
   },
 
   searchBar: {
     width: "100%",
-    padding: 5,
+    padding: width * 0.015,
   },
 
   settingsIcon: {
-    width: 26,
-    height: 26,
+    width: width * 0.07,
+    height: width * 0.07,
   },
 
   postContainer: {
     width: "100%",
-    paddingVertical: 10,
+    paddingVertical: width * 0.025,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
     backgroundColor: "#fceed3",
@@ -72,24 +70,24 @@ const homeStyles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 6,
-    paddingHorizontal: 10,
+    marginBottom: width * 0.02,
+    paddingHorizontal: width * 0.03,
   },
 
   profileImage: {
-    width: 33,
-    height: 33,
-    borderRadius: 16.5,
-    marginRight: 6,
+    width: width * 0.09,
+    height: width * 0.09,
+    borderRadius: width * 0.045, // Half for perfect circle
+    marginRight: width * 0.02,
   },
 
   userName: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: width * 0.04, // Responsive text size
   },
 
   residence: {
-    fontSize: 11,
+    fontSize: width * 0.035,
     color: "#777",
   },
 
@@ -97,51 +95,51 @@ const homeStyles = StyleSheet.create({
     color: "blue",
     marginLeft: "auto",
     fontWeight: "bold",
-    fontSize: 11,
+    fontSize: width * 0.035,
   },
 
   postBox: {
     width: "90%",
     alignSelf: "center",
-    padding: 10,
+    padding: width * 0.03,
     backgroundColor: "#dcdcdc",
-    borderRadius: 7,
+    borderRadius: width * 0.03,
   },
 
   postImage: {
     width: "100%",
     height: undefined,
-    aspectRatio: 1,
-    borderRadius: 7,
-    marginTop: 6,
+    aspectRatio: 1, // Maintains proper aspect ratio
+    borderRadius: width * 0.03,
+    marginTop: width * 0.015,
   },
 
   bottomNav: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 10,
+    paddingVertical: width * 0.03,
     backgroundColor: "#aa708b",
-    borderTopLeftRadius: 14,
-    borderTopRightRadius: 14,
+    borderTopLeftRadius: width * 0.04,
+    borderTopRightRadius: width * 0.04,
     alignItems: "center",
-    width,
+    width: "100%",
     position: "absolute",
     bottom: 0,
   },
 
   navIcon: {
-    width: 26,
-    height: 26,
+    width: width * 0.07,
+    height: width * 0.07,
   },
 
   homeIcon: {
-    width: 38,
-    height: 38,
+    width: width * 0.1,
+    height: width * 0.1,
     position: "absolute",
-    top: -16,
+    top: -width * 0.04,
     backgroundColor: "#c28e9e",
-    padding: 6,
-    borderRadius: 19,
+    padding: width * 0.015,
+    borderRadius: width * 0.05, // Half for circle
     justifyContent: "center",
     alignItems: "center",
   },

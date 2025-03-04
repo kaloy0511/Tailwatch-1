@@ -40,7 +40,7 @@ const ReportScreen = () => {
         {image ? (
           <Image source={{ uri: image }} style={ReportScreenStyles.image} />
         ) : (
-          <Text style={ReportScreenStyles.imagePlaceholder}>Picture of reported animal</Text>
+          <Text style={ReportScreenStyles.imagePlaceholder}>Click to Upload Picture.</Text>
         )}
       </TouchableOpacity>
       <TextInput
