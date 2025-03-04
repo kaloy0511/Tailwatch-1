@@ -33,7 +33,7 @@ const HomeScreen = () => {
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Text style={homeStyles.navText}>Home</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("AdoptPets")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
             <Text style={homeStyles.navText}>Adopt Pets</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Report")}>
