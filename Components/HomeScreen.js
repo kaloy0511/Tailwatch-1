@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context"; // Ensures proper padding
 import { useNavigation } from "@react-navigation/native";
 import homeStyles from "../StyleSheet/HomeStyle";
 
@@ -24,7 +25,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={homeStyles.container}> 
       {/* Header */}
       <View style={homeStyles.header}>
         <Image source={require("../assets/logo.png")} style={homeStyles.logo} />
@@ -91,7 +92,7 @@ const HomeScreen = () => {
           <Image source={require("../assets/Settings.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
