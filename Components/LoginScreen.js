@@ -3,24 +3,26 @@ import { View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-nat
 import { FontAwesome } from "@expo/vector-icons";
 import { CheckBox } from "react-native-elements";
 import styles from "../StyleSheet/LoginStyles";
-import { users } from "./UsersArray"; // Import the users array
+import { getUsers } from "./UsersArray"; // Import AsyncStorage functions
 
 export default function LoginScreen({ navigation }) {
   const [staySignedIn, setStaySignedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!username || !password) {
       Alert.alert("Error", "Please enter your username and password.");
       return;
     }
 
-    // Check if the username and password match a stored user
+    // Retrieve users from AsyncStorage
+    const users = await getUsers();
     const user = users.find((u) => u.username === username && u.password === password);
+
     if (user) {
       Alert.alert("Success", "Login successful!");
-      navigation.navigate("Home"); // Redirect to home screen
+      navigation.navigate("Home"); // Redirect to Home screen
     } else {
       Alert.alert("Error", "Invalid username or password.");
     }
@@ -33,29 +35,11 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.loginBox}>
         <Text style={styles.title}>Sign in</Text>
 
-        <TextInput
-          placeholder="USERNAME"
-          style={styles.input}
-          placeholderTextColor="#999"
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput
-          placeholder="PASSWORD"
-          style={styles.input}
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+        <TextInput placeholder="USERNAME" style={styles.input} placeholderTextColor="#999" value={username} onChangeText={setUsername} />
+        <TextInput placeholder="PASSWORD" style={styles.input} placeholderTextColor="#999" secureTextEntry value={password} onChangeText={setPassword} />
 
         <View style={styles.checkboxContainer}>
-          <CheckBox
-            checked={staySignedIn}
-            onPress={() => setStaySignedIn(!staySignedIn)}
-            checkedColor="#000"
-            containerStyle={{ padding: 0, margin: 0 }}
-          />
+          <CheckBox checked={staySignedIn} onPress={() => setStaySignedIn(!staySignedIn)} checkedColor="#000" containerStyle={{ padding: 0, margin: 0 }} />
           <Text style={styles.checkboxText}>Stay Signed in</Text>
         </View>
 

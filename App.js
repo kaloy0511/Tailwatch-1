@@ -11,6 +11,9 @@ import AdoptScreen from "./Components/AdoptScreen";
 import LostScreen from "./Components/LostScreen";
 import SettingScreen from "./Components/SettingScreen";
 import NotificationScreen from "./Components/NotificationScreen";
+import ProfileScreen from "./Components/ProfileScreen";
+import EditProfileScreen from "./Components/EditProfileScreen";
+
 
 const Stack = createStackNavigator();
 
@@ -26,6 +29,8 @@ const App = () => {
         <Stack.Screen name="Lost" component={LostScreen} />
         <Stack.Screen name="Settings" component={SettingScreen} />
         <Stack.Screen name="Notifications" component={NotificationScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
