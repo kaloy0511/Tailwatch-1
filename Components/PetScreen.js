@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 import styles from "../StyleSheet/PetStyles"; // Ensure you have this style file
 
 const PetScreen = () => {
+  const navigation = useNavigation();
   const [pets, setPets] = useState([
     { id: "1", name: "Buddy", type: "Dog", breed: "Golden Retriever" },
   ]);
@@ -24,6 +26,11 @@ const PetScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Back Button to Settings Screen */}
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("Settings")}>
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
+      
       <Text style={styles.title}>My Pets</Text>
 
       {/* Pet List */}

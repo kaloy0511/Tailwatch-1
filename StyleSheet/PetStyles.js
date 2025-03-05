@@ -50,4 +50,19 @@ export default StyleSheet.create({
   disabledButton: {
     backgroundColor: "#ccc",
   },
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 15,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    width: 60,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  backButtonText: {
+    fontSize: 20,
+      color: "#aa708b",
+  },
 });
