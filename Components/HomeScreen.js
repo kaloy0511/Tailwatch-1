@@ -31,19 +31,20 @@ const HomeScreen = () => {
         <Image source={require("../assets/logo.png")} style={homeStyles.logo} />
         
         <View style={homeStyles.navLinks}>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Text style={homeStyles.navText}>Home</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
-            <Text style={homeStyles.navText}>Adopt Pets</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Report")}>
-            <Text style={homeStyles.navText}>Report</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Lost")}>
-            <Text style={homeStyles.navText}>Lost Pets</Text>
-          </TouchableOpacity>
-        </View>
+  <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+    <Text style={homeStyles.navText}>Home</Text>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
+    <Text style={homeStyles.navText}>Adopt Pets</Text>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate("Report")}>
+    <Text style={homeStyles.navText}>Report</Text>
+  </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate("Lost")} style={homeStyles.lostPetsButton}>
+    <Text style={homeStyles.navText}>Lost Pets</Text>
+  </TouchableOpacity>
+</View>
+
       </View>
 
       {/* Search Bar */}

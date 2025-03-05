@@ -147,6 +147,10 @@ const homeStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  lostPetsButton: {
+    marginBottom: 20, // Adjust this value to create more or less space
+  },
+  
 });
 
 export default homeStyles;
