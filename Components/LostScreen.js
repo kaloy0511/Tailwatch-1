@@ -7,16 +7,16 @@ const lostPets = [
   {
     id: "1",
     image: require("../assets/lostdog1.jpg"),
-    what: "Golden Retriever missing",
-    when: "March 3, 2025",
-    where: "Downtown Park",
+    lastSeen: "Downtown Park",
+    description: "Golden Retriever missing since March 3, 2025.",
+    contact: "(123) 456-7890",
   },
   {
     id: "2",
     image: require("../assets/lostcat1.jpg"),
-    what: "Tabby cat found",
-    when: "March 4, 2025",
-    where: "5th Avenue",
+    lastSeen: "5th Avenue",
+    description: "Tabby cat found wandering on March 4, 2025.",
+    contact: "(987) 654-3210",
   },
 ];
 
@@ -46,9 +46,9 @@ const LostScreen = () => {
               <TouchableOpacity style={lostPetStyles.infoButton}>
                 <Text style={lostPetStyles.buttonText}>Review Full Info</Text>
               </TouchableOpacity>
-              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>What:</Text> {item.what}</Text>
-              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>When:</Text> {item.when}</Text>
-              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>Where:</Text> {item.where}</Text>
+              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>Last Seen:</Text> {item.lastSeen}</Text>
+              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>Description:</Text> {item.description}</Text>
+              <Text style={lostPetStyles.eventText}><Text style={{ fontWeight: 'bold' }}>Contact Info:</Text> {item.contact}</Text>
             </View>
           </View>
         )}
