@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fceed3", // Background color from your previous style
+    backgroundColor: "#fceed3", 
     justifyContent: "center",
     alignItems: "center",
   },
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "cover",
-    opacity: 0.3, // Keeping a subtle background effect
+    opacity: 0.3,
   },
 
   loginBox: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderColor: "#ccc",
     borderWidth: 1,
-    borderRadius: 20, // Rounded input fields like the previous design
+    borderRadius: 20, 
     paddingHorizontal: 15,
     fontSize: 14,
     color: "#000",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#d79d99", // Soft pink from the previous style
+    backgroundColor: "#d79d99", 
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 20,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 
-  // Signup and Forgot Password Buttons
+ 
   Signup: {
     backgroundColor: "#d79d99",
     paddingVertical: height * 0.015,
@@ -112,11 +112,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  // Bottom section with a gradient-like feel
+  
   Frame3: {
     width: "100%",
     height: height * 0.18,
-    backgroundColor: "#aa708b", // Purple accent from your old design
+    backgroundColor: "#aa708b", 
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     alignItems: "center",
@@ -160,6 +160,33 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textDecorationLine: "underline",
   },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 20, // Same as username field
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    width: "100%",
+    backgroundColor: "#fff",
+  },
+  inputFocused: {
+    borderColor: "#4B1E35", // Highlighted border color when focused
+    borderWidth: 2,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingVertical: 10,
+    fontSize: 14,
+    
+  },
+  showPasswordButton: {
+    padding: 10,
+  },
+  
+  
+  
   
 });
 

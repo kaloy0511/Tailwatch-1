@@ -9,6 +9,8 @@ export default function LoginScreen({ navigation }) {
   const [staySignedIn, setStaySignedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -35,8 +37,30 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.loginBox}>
         <Text style={styles.title}>Sign in</Text>
 
-        <TextInput placeholder="USERNAME" style={styles.input} placeholderTextColor="#999" value={username} onChangeText={setUsername} />
-        <TextInput placeholder="PASSWORD" style={styles.input} placeholderTextColor="#999" secureTextEntry value={password} onChangeText={setPassword} />
+        <TextInput 
+          placeholder="USERNAME" 
+          style={styles.input} 
+          placeholderTextColor="#999" 
+          value={username} 
+          onChangeText={setUsername} 
+        />
+
+        <View style={[styles.passwordContainer, isPasswordFocused && styles.inputFocused]}>
+          <TextInput 
+            placeholder="PASSWORD" 
+            style={[styles.passwordInput, { flex: 1 }]} 
+            placeholderTextColor="#999" 
+            secureTextEntry={!showPassword} 
+            value={password} 
+            onChangeText={setPassword} 
+            onFocus={() => setIsPasswordFocused(true)}
+            onBlur={() => setIsPasswordFocused(false)}
+            underlineColorAndroid="transparent" // Removes inner highlight
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.showPasswordButton}>
+            <FontAwesome name={showPassword ? "eye-slash" : "eye"} size={20} color="#000" />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.checkboxContainer}>
           <CheckBox checked={staySignedIn} onPress={() => setStaySignedIn(!staySignedIn)} checkedColor="#000" containerStyle={{ padding: 0, margin: 0 }} />
