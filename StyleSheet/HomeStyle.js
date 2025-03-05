@@ -36,8 +36,8 @@ const homeStyles = StyleSheet.create({
   },
 
   logo: {
-    width: width * 0.12,
-    height: width * 0.12,
+    width: 50,
+    height: 50,
     borderRadius: width * 0.06, // Half for perfect circle
   },
 
