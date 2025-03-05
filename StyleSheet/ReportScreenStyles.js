@@ -1,65 +1,87 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const ReportScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fdf6ec",
+    backgroundColor: "#fceed3",
     alignItems: "center",
-    padding: 16,
+    padding: width * 0.05,
   },
+
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingVertical: width * 0.03,
+    backgroundColor: "#aa708b",
+    paddingHorizontal: width * 0.05,
+  },
+
   backButton: {
-    position: "absolute",
-    top: 40,
-    left: 20,
-    padding: 10,
+    padding: width * 0.02,
+    backgroundColor: "#fff",
+    borderRadius: width * 0.02,
   },
-  title: {
-    fontSize: 24,
+
+  backButtonText: {
+    fontSize: width * 0.04,
+    color: "#aa708b",
     fontWeight: "bold",
-    color: "#6d4c41",
-    marginTop: 60,
-    marginBottom: 20,
   },
+
+  title: {
+    fontSize: width * 0.06,
+    fontWeight: "bold",
+    marginVertical: width * 0.05,
+    color: "#333",
+  },
+
   imageContainer: {
-    width: 200,
-    height: 200,
-    backgroundColor: "#d4a373",
+    width: width * 0.6,
+    height: width * 0.6,
+    backgroundColor: "#ddd",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 12,
-    marginBottom: 20,
+    borderRadius: width * 0.04,
+    marginBottom: width * 0.05,
   },
+
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 12,
+    borderRadius: width * 0.04,
   },
+
   imagePlaceholder: {
-    color: "white",
-    fontSize: 14,
+    color: "#555",
     textAlign: "center",
+    fontSize: width * 0.04,
   },
+
   input: {
-    width: "90%",
-    height: 100,
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 8,
-    borderColor: "#d4a373",
-    borderWidth: 1,
-    marginBottom: 20,
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: width * 0.02,
+    padding: width * 0.04,
+    fontSize: width * 0.04,
+    marginBottom: width * 0.04,
+    minHeight: height * 0.15,
+    textAlignVertical: "top",
   },
+
   submitButton: {
-    backgroundColor: "#e76f51",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    alignItems: "center",
-    width: "90%",
+    backgroundColor: "#aa708b",
+    paddingVertical: width * 0.04,
+    paddingHorizontal: width * 0.1,
+    borderRadius: width * 0.03,
   },
+
   submitButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: width * 0.045,
     fontWeight: "bold",
   },
 });
