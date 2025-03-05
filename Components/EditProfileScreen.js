@@ -54,7 +54,7 @@ const EditProfileScreen = ({ navigation }) => {
     <SafeAreaView style={EditProfileStyles.container}>
       {/* Back Button */}
       <TouchableOpacity style={EditProfileStyles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={EditProfileStyles.backButtonText}>⬅</Text>
+        <Text style={EditProfileStyles.backButtonText}>Back</Text>
       </TouchableOpacity>
 
       {/* Title */}

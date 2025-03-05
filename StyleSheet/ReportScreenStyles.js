@@ -1,89 +1,72 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
-
-const ReportScreenStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fceed3",
+    backgroundColor: "#FCE8D5",
     alignItems: "center",
-    padding: width * 0.05,
+    paddingTop: 20,
   },
-
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    paddingVertical: width * 0.03,
-    backgroundColor: "#aa708b",
-    paddingHorizontal: width * 0.05,
-  },
-
   backButton: {
-    padding: width * 0.02,
+    position: "absolute",
+    top: 20,
+    left: 15,
     backgroundColor: "#fff",
-    borderRadius: width * 0.02,
+    borderRadius: 10,
+    width: 60,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
   },
-
   backButtonText: {
-    fontSize: width * 0.04,
+    fontSize: 20,
     color: "#aa708b",
-    fontWeight: "bold",
   },
-
   title: {
-    fontSize: width * 0.06,
+    fontSize: 24,
     fontWeight: "bold",
-    marginVertical: width * 0.05,
-    color: "#333",
+    marginTop: 10,
+    color: "#4B1E35",
   },
-
   imageContainer: {
-    width: width * 0.6,
-    height: width * 0.6,
+    marginTop: 10,
+    width: 200,
+    height: 350,
     backgroundColor: "#ddd",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: width * 0.04,
-    marginBottom: width * 0.05,
+    borderRadius: 20,
   },
-
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: width * 0.04,
+    borderRadius: 20,
   },
-
   imagePlaceholder: {
     color: "#555",
     textAlign: "center",
-    fontSize: width * 0.04,
+    fontSize: 12,
   },
-
   input: {
-    width: "100%",
+    width: "90%",
     backgroundColor: "white",
-    borderRadius: width * 0.02,
-    padding: width * 0.04,
-    fontSize: width * 0.04,
-    marginBottom: width * 0.04,
-    minHeight: height * 0.15,
+    borderRadius: 10,
+    padding: 15,
+    fontSize: 16,
+    marginBottom: 10,
+    minHeight: 120,
     textAlignVertical: "top",
   },
-
   submitButton: {
-    backgroundColor: "#aa708b",
-    paddingVertical: width * 0.04,
-    paddingHorizontal: width * 0.1,
-    borderRadius: width * 0.03,
+    backgroundColor: "#E08989",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginTop: 20,
   },
-
   submitButtonText: {
     color: "white",
-    fontSize: width * 0.045,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
-
-export default ReportScreenStyles;

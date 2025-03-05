@@ -11,16 +11,17 @@ export default StyleSheet.create({
     position: "absolute",
     top: 20,
     left: 15,
-    backgroundColor: "#000",
-    borderRadius: 20,
-    width: 35,
-    height: 35,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    width: 60,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
+
   },
   backButtonText: {
     fontSize: 20,
-    color: "#fff",
+    color: "#aa708b",
   },
   title: {
     fontSize: 24,

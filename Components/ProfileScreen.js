@@ -23,7 +23,7 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={ProfileStyles.container}>
       {/* Back Button */}
       <TouchableOpacity style={ProfileStyles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={ProfileStyles.backButtonText}>⬅</Text>
+        <Text style={ProfileStyles.backButtonText}>Back</Text>
       </TouchableOpacity>
 
       {/* Title */}
