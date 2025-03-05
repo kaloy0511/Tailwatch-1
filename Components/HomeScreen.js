@@ -84,7 +84,7 @@ const HomeScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
           <Image source={require("../assets/Notification.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Map")}>
+        <TouchableOpacity>
           <Image source={require("../assets/Map.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
