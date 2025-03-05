@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
 const SettingStyles = StyleSheet.create({
     container: {
@@ -26,5 +26,21 @@ const SettingStyles = StyleSheet.create({
       fontSize: 18,
       fontWeight: "bold",
     },
+    backButton: {
+      position: "absolute",
+    top: 20,
+    left: 15,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    width: 60,
+    height: 40,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    backButtonText: {
+      fontSize: 20,
+      color: "#aa708b",
+    },
   });
-  export default SettingStyles;
+
+export default SettingStyles;
