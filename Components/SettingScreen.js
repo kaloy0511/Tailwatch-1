@@ -24,7 +24,7 @@ const SettingsScreen = ({ navigation }) => {
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Profile")}>
         <Text style={SettingStyles.settingText}>Profile</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={SettingStyles.settingOption}>
+      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("PetScreen")}>
         <Text style={SettingStyles.settingText}>Pet</Text>
       </TouchableOpacity>
       <TouchableOpacity style={SettingStyles.settingOption}>
