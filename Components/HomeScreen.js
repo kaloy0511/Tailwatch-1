@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Import navigation hook
-import homeStyles from "../StyleSheet/HomeStyle"; // Ensure the path is correct
+import { useNavigation } from "@react-navigation/native";
+import homeStyles from "../StyleSheet/HomeStyle";
 
 const communityPosts = [
   { 
@@ -21,7 +21,7 @@ const communityPosts = [
 ];
 
 const HomeScreen = () => {
-  const navigation = useNavigation(); // FIX: Navigation Hook
+  const navigation = useNavigation();
 
   return (
     <View style={{ flex: 1 }}>
@@ -43,10 +43,6 @@ const HomeScreen = () => {
             <Text style={homeStyles.navText}>Lost Pets</Text>
           </TouchableOpacity>
         </View>
-        
-        <TouchableOpacity>
-          <Image source={require("../assets/Settings.png")} style={homeStyles.settingsIcon} />
-        </TouchableOpacity>
       </View>
 
       {/* Search Bar */}
@@ -79,19 +75,20 @@ const HomeScreen = () => {
           </View>
         )}
       />
+
       {/* Bottom Navigation */}
       <View style={homeStyles.bottomNav}>
         <TouchableOpacity>
-          <Text>🏠</Text>
+          <Image source={require("../assets/Location.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>✉️</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
+          <Image source={require("../assets/Notification.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>👥</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Map")}>
+          <Image source={require("../assets/Map.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>📷</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+          <Image source={require("../assets/Settings.png")} style={homeStyles.navIcon} />
         </TouchableOpacity>
       </View>
     </View>
