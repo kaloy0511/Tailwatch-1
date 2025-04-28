@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
   },
   postImage: {
     width: "100%",
-    height: 150,
+    height: 200, // Adjust height as needed
     borderRadius: 10,
+    resizeMode: "contain", // Ensures the entire image is shown without cropping
   },
   bottomNav: {
     flexDirection: "row",
