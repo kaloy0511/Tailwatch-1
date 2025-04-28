@@ -1,95 +1,104 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get("window"); // Get actual screen size
+const { width } = Dimensions.get("window");
 
-const adoptStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fceed3",
-    width: "100%", // Responsive width
+    backgroundColor: "#fef6e4",
   },
-
   header: {
     flexDirection: "row",
     alignItems: "center",
-    padding: width * 0.03, // Scales with screen size
-    backgroundColor: "#aa708b",
     justifyContent: "space-between",
-    width: "100%", // Responsive width
+    backgroundColor: "#2e4057",
+    paddingHorizontal: 10,
+    paddingVertical: 15,
   },
-
   logo: {
-    width: width * 0.1, // 10% of screen width
-    height: width * 0.1,
-    borderRadius: width * 0.05, // Half for perfect circle
+    width: 50,
+    height: 50,
   },
-
-  searchBar: {
-    flex: 1,
-    backgroundColor: "white",
-    borderRadius: width * 0.02,
-    paddingHorizontal: width * 0.03,
-    height: width * 0.1,
-    marginHorizontal: width * 0.02,
-  },
-
-  title: {
-    fontSize: width * 0.06,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginTop: width * 0.05,
-  },
-
-  subtitle: {
-    fontSize: width * 0.045,
-    textAlign: "center",
-    marginBottom: width * 0.05,
-  },
-
-  petCard: {
-    backgroundColor: "#e8d1c5",
-    padding: width * 0.05,
-    margin: width * 0.03,
-    borderRadius: width * 0.04,
+  navLinks: {
+    flexDirection: "row",
     alignItems: "center",
   },
-
-  petImage: {
-    width: width * 0.5,
-    height: width * 0.5,
-    borderRadius: width * 0.02,
+  navText: {
+    color: "#fff",
+    fontSize: 14,
+    marginHorizontal: 10,
   },
-
-  petName: {
-    fontSize: width * 0.05,
+  settingsIcon: {
+    width: 30,
+    height: 30,
+  },
+  title: {
+    fontSize: 24,
     fontWeight: "bold",
-    marginTop: width * 0.02,
-  },
-
-  petInfo: {
-    fontSize: width * 0.04,
-    marginTop: width * 0.01,
-  },
-
-  petDescription: {
-    fontSize: width * 0.035,
+    color: "#2e4057",
     textAlign: "center",
-    marginTop: width * 0.02,
+    marginTop: 20,
   },
-
-  infoButton: {
-    marginTop: width * 0.03,
-    backgroundColor: "#aa708b",
-    paddingVertical: width * 0.03,
-    paddingHorizontal: width * 0.05,
-    borderRadius: width * 0.02,
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    textAlign: "center",
+    marginBottom: 20,
   },
-
-  buttonText: {
-    color: "white",
-    fontSize: width * 0.04,
+  petCard: {
+    backgroundColor: "#fff",
+    margin: 10,
+    borderRadius: 10,
+    padding: 15,
+    elevation: 2,
+    alignItems: "center",
+  },
+  petImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    backgroundColor: "#d9d9d9",
+    marginBottom: 10,
+  },
+  petInfo: {
+    width: "100%",
+    marginBottom: 10,
+  },
+  petName: {
+    fontSize: 16,
     fontWeight: "bold",
+    color: "#2e4057",
+    marginBottom: 5,
+  },
+  petDetails: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 5,
+  },
+  reviewButton: {
+    width: "100%",
+    height: 40,
+    backgroundColor: "#fdb827",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  reviewButtonText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#2e4057",
+    paddingVertical: 10,
+  },
+  navIcon: {
+    width: 30,
+    height: 30,
   },
 });
 
-export default adoptStyles;
+export default styles;

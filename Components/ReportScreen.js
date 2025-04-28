@@ -10,7 +10,6 @@ const ReportScreen = () => {
   const [description, setDescription] = useState("");
 
   const handleImageUpload = async () => {
-    // Request media library permissions
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
       Alert.alert("Permission Required", "Please allow access to your gallery.");
@@ -25,38 +24,63 @@ const ReportScreen = () => {
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri); // ✅ Corrected
+      setImage(result.assets[0].uri);
     }
   };
 
   const handleSubmit = () => {
+    if (!description || !image) {
+      Alert.alert("Error", "Please provide an image and a description.");
+      return;
+    }
+
     Alert.alert("Report Submitted", "Your report has been successfully delivered.", [
-      { text: "OK", onPress: () => navigation.navigate("Home") }
+      { text: "OK", onPress: () => navigation.navigate("Home") },
     ]);
   };
 
   return (
     <View style={ReportScreenStyles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Home")} style={ReportScreenStyles.backButton}>
-        <Text style={ReportScreenStyles.backButtonText}>Back</Text>
-      </TouchableOpacity>
-      
-      <Text style={ReportScreenStyles.title}>Report Pet</Text>
+      {/* Header */}
+      <View style={ReportScreenStyles.header}>
+        <Image source={null} style={ReportScreenStyles.logo} /> {/* Add logo asset */}
+        <View style={ReportScreenStyles.navLinks}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Text style={ReportScreenStyles.navText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
+            <Text style={ReportScreenStyles.navText}>Adopt Pets</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Lost")}>
+            <Text style={ReportScreenStyles.navText}>Lost Pets</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+          <Image source={null} style={ReportScreenStyles.settingsIcon} /> {/* Add settings icon */}
+        </TouchableOpacity>
+      </View>
+
+      {/* Title */}
+      <Text style={ReportScreenStyles.title}>Report Pet/Stray</Text>
 
       {/* Image Upload */}
       <TouchableOpacity onPress={handleImageUpload} style={ReportScreenStyles.imageContainer}>
         {image ? (
           <Image source={{ uri: image }} style={ReportScreenStyles.image} />
         ) : (
-          <Text style={ReportScreenStyles.imagePlaceholder}>Click to Upload Picture.</Text>
+          <Text style={ReportScreenStyles.imagePlaceholder}>upload file</Text>
         )}
       </TouchableOpacity>
 
-      {/* Description Input */}
+      {/* Description */}
+      <Text style={ReportScreenStyles.descriptionText}>
+        Please provide a brief explanation of the incident, including details such as the type of animal, a description
+        of the animal, your contact information, and the date and time of the report.
+      </Text>
       <TextInput
         style={ReportScreenStyles.input}
         multiline
-        numberOfLines={4}
+        numberOfLines={6}
         placeholder="Describe the incident..."
         value={description}
         onChangeText={setDescription}
@@ -64,7 +88,7 @@ const ReportScreen = () => {
 
       {/* Submit Button */}
       <TouchableOpacity style={ReportScreenStyles.submitButton} onPress={handleSubmit}>
-        <Text style={ReportScreenStyles.submitButtonText}>Submit Report</Text>
+        <Text style={ReportScreenStyles.submitButtonText}>SUBMIT REPORT</Text>
       </TouchableOpacity>
     </View>
   );

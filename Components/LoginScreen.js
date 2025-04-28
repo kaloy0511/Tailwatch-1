@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, ImageBackground, Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { CheckBox } from "react-native-elements";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import styles from "../StyleSheet/LoginStyles";
-import { getUsers } from "./UsersArray"; // Import AsyncStorage functions
+import sampleDogImage from "../assets/sampledog.jpg";
 
 export default function LoginScreen({ navigation }) {
-  const [staySignedIn, setStaySignedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -18,63 +17,90 @@ export default function LoginScreen({ navigation }) {
       return;
     }
 
-    // Retrieve users from AsyncStorage
-    const users = await getUsers();
-    const user = users.find((u) => u.username === username && u.password === password);
+    try {
+      // Retrieve user credentials from AsyncStorage
+      const users = JSON.parse(await AsyncStorage.getItem("users")) || [];
+      const user = users.find((user) => user.username === username && user.password === password);
 
-    if (user) {
-      Alert.alert("Success", "Login successful!");
-      navigation.navigate("Home"); // Redirect to Home screen
-    } else {
-      Alert.alert("Error", "Invalid username or password.");
+      if (user) {
+        Alert.alert("Success", "Login successful!");
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Error", "Invalid username or password.");
+      }
+    } catch (error) {
+      Alert.alert("Error", "Something went wrong. Please try again.");
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: "https://wallpapercave.com/wp/wp6516704.jpg" }} style={styles.background} />
-
-      <View style={styles.loginBox}>
-        <Text style={styles.title}>Sign in</Text>
-
-        <TextInput 
-          placeholder="USERNAME" 
-          style={styles.input} 
-          placeholderTextColor="#999" 
-          value={username} 
-          onChangeText={setUsername} 
+    <ImageBackground source={sampleDogImage} style={styles.background}>
+      <View style={styles.container}>
+        {/* Logo */}
+        <Image
+          source={{ uri: "https://via.placeholder.com/100" }} // Replace with your logo URL
+          style={styles.logo}
         />
 
-        <View style={[styles.passwordContainer, isPasswordFocused && styles.inputFocused]}>
-          <TextInput 
-            placeholder="PASSWORD" 
-            style={[styles.passwordInput, { flex: 1 }]} 
-            placeholderTextColor="#999" 
-            secureTextEntry={!showPassword} 
-            value={password} 
-            onChangeText={setPassword} 
-            onFocus={() => setIsPasswordFocused(true)}
-            onBlur={() => setIsPasswordFocused(false)}
-            underlineColorAndroid="transparent" // Removes inner highlight
+        {/* Title */}
+        <Text style={styles.appTitle}>TailWatch</Text>
+
+        <View style={styles.loginBox}>
+          <TextInput
+            placeholder="USERNAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={username}
+            onChangeText={setUsername}
           />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.showPasswordButton}>
-            <FontAwesome name={showPassword ? "eye-slash" : "eye"} size={20} color="#000" />
+
+          <View style={[styles.passwordContainer, isPasswordFocused && styles.inputFocused]}>
+            <TextInput
+              placeholder="PASSWORD"
+              style={styles.passwordInput}
+              placeholderTextColor="#999"
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={setPassword}
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.showPasswordButton}>
+              <FontAwesome name={showPassword ? "eye-slash" : "eye"} size={20} color="#000" />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.forgotPassword}>forgot password?</Text>
+
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+              <Text style={styles.buttonText}>LOGIN</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate("SignUp")}>
+              <Text style={styles.buttonText}>SIGN-UP</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.registerText}>Register your pet?</Text>
+          <TouchableOpacity style={styles.petSignUpButton}>
+            <Text style={styles.petSignUpText}>SIGN-UP</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.checkboxContainer}>
-          <CheckBox checked={staySignedIn} onPress={() => setStaySignedIn(!staySignedIn)} checkedColor="#000" containerStyle={{ padding: 0, margin: 0 }} />
-          <Text style={styles.checkboxText}>Stay Signed in</Text>
+        <Text style={styles.orLoginWith}>Or login with</Text>
+
+        <View style={styles.socialButtons}>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="google" size={24} color="#DB4437" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="facebook" size={24} color="#4267B2" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="twitter" size={24} color="#1DA1F2" />
+          </TouchableOpacity>
         </View>
-
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <FontAwesome name="arrow-right" size={30} color="#000" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.bottomButton} onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.bottomText}>CREATE ACCOUNT</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
 }

@@ -3,32 +3,39 @@ import { StyleSheet, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   background: {
     flex: 1,
     width: "100%",
     height: "100%",
     resizeMode: "cover",
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
   logo: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     marginBottom: 10,
   },
   appTitle: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#2e4057",
+    marginBottom: 5,
+  },
+  accountCreationTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#2e4057",
     marginBottom: 20,
   },
-  loginBox: {
+  signUpBox: {
     width: "85%",
     maxWidth: 400,
-    backgroundColor: "#fff",
+    backgroundColor: "#eaf4f4",
     padding: 20,
     borderRadius: 15,
     alignItems: "center",
@@ -50,50 +57,16 @@ const styles = StyleSheet.create({
     color: "#000",
     marginBottom: 15,
   },
-  passwordContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+  createAccountButton: {
     width: "100%",
-    backgroundColor: "#f0f0f0",
-  },
-  inputFocused: {
-    borderColor: "#4B1E35",
-    borderWidth: 2,
-  },
-  forgotPassword: {
-    alignSelf: "flex-end",
-    fontSize: 12,
-    color: "#666",
-    marginBottom: 10,
-  },
-  buttonRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginBottom: 10,
-  },
-  loginButton: {
-    width: "48%",
     height: 50,
     borderRadius: 10,
     backgroundColor: "#2e4057",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 15,
   },
-  signUpButton: {
-    width: "48%",
-    height: 50,
-    borderRadius: 10,
-    backgroundColor: "#2e4057",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
+  createAccountButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
@@ -114,30 +87,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
-  },
-  orLoginWith: {
-    fontSize: 14,
-    color: "#666",
-    marginVertical: 10,
-  },
-  socialButtons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "100%",
-  },
-  socialButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 3,
   },
 });
 

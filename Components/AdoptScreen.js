@@ -1,26 +1,27 @@
 import React from "react";
-import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import adoptStyles from "../StyleSheet/AdoptStyles";
 
-const adoptablePets = [
+const pets = [
   {
     id: "1",
-    name: "Bella",
-    age: "2 years",
+    name: "Bubba",
+    age: "3 Years old",
     concerns: "None",
-    breed: "Golden Retriever",
-    description: "A friendly and energetic dog looking for a loving home.",
-    image: require("../assets/dog1.jpg"),
+    breed: "Pomeranian",
+    description: "Energetic, trained, doesn't bite",
+    image: null, // Add image asset here
   },
   {
     id: "2",
-    name: "Whiskers",
-    age: "1 year",
-    concerns: "Allergy-prone",
-    breed: "Persian Cat",
-    description: "A calm and affectionate cat in need of a warm home.",
-    image: require("../assets/cat1.jpg"),
+    name: "Coco",
+    age: "2 Years old",
+    concerns: "None",
+    breed: "Poodle",
+    description: "Friendly, loves cuddles, playful",
+    image: null, // Add image asset here
   },
 ];
 
@@ -28,37 +29,71 @@ const AdoptScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={adoptStyles.container}>
       {/* Header */}
       <View style={adoptStyles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require("../assets/logo.png")} style={adoptStyles.logo} />
+        <Image source={null} style={adoptStyles.logo} /> {/* Add logo asset here */}
+        <View style={adoptStyles.navLinks}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Text style={adoptStyles.navText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
+            <Text style={adoptStyles.navText}>Adopt Pets</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Report")}>
+            <Text style={adoptStyles.navText}>Report</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Lost")}>
+            <Text style={adoptStyles.navText}>Lost Pets</Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+          <Image source={null} style={adoptStyles.settingsIcon} /> {/* Add settings icon asset here */}
         </TouchableOpacity>
-        <TextInput placeholder="What are you looking for?" style={adoptStyles.searchBar} />
       </View>
 
-      {/* Pet Adoption Section */}
+      {/* Title */}
       <Text style={adoptStyles.title}>Pet Adoption</Text>
       <Text style={adoptStyles.subtitle}>Finding a companion?</Text>
 
+      {/* Pet List */}
       <FlatList
-        data={adoptablePets}
+        data={pets}
         keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingBottom: 80 }}
         renderItem={({ item }) => (
           <View style={adoptStyles.petCard}>
             <Image source={item.image} style={adoptStyles.petImage} />
-            <Text style={adoptStyles.petName}>{item.name}</Text>
-            <Text style={adoptStyles.petInfo}>Age: {item.age}</Text>
-            <Text style={adoptStyles.petInfo}>Breed: {item.breed}</Text>
-            <Text style={adoptStyles.petInfo}>Concerns: {item.concerns}</Text>
-            <Text style={adoptStyles.petDescription}>{item.description}</Text>
-            <TouchableOpacity style={adoptStyles.infoButton}>
-              <Text style={adoptStyles.buttonText}>Review Full Info</Text>
+            <View style={adoptStyles.petInfo}>
+              <Text style={adoptStyles.petName}>Name: {item.name}</Text>
+              <Text style={adoptStyles.petDetails}>Age: {item.age}</Text>
+              <Text style={adoptStyles.petDetails}>Concerns: {item.concerns}</Text>
+              <Text style={adoptStyles.petDetails}>Breed: {item.breed}</Text>
+              <Text style={adoptStyles.petDetails}>Description: {item.description}</Text>
+            </View>
+            <TouchableOpacity style={adoptStyles.reviewButton}>
+              <Text style={adoptStyles.reviewButtonText}>Review Full Info</Text>
             </TouchableOpacity>
           </View>
         )}
       />
-    </View>
+
+      {/* Bottom Navigation */}
+      <View style={adoptStyles.bottomNav}>
+        <TouchableOpacity>
+          <Image source={null} style={adoptStyles.navIcon} /> {/* Add paw icon asset here */}
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Messages")}>
+          <Image source={null} style={adoptStyles.navIcon} /> {/* Add messages icon asset here */}
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Image source={null} style={adoptStyles.navIcon} /> {/* Add home icon asset here */}
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
+          <Image source={null} style={adoptStyles.navIcon} /> {/* Add adopt icon asset here */}
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 

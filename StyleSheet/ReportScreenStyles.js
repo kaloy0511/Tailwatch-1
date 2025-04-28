@@ -1,72 +1,96 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
-export default StyleSheet.create({
+const { width } = Dimensions.get("window");
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FCE8D5",
-    alignItems: "center",
+    backgroundColor: "#fef6e4",
+    paddingHorizontal: 20,
     paddingTop: 20,
   },
-  backButton: {
-    position: "absolute",
-    top: 20,
-    left: 15,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    width: 60,
-    height: 40,
-    justifyContent: "center",
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#2e4057",
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+  },
+  navLinks: {
+    flexDirection: "row",
     alignItems: "center",
   },
-  backButtonText: {
-    fontSize: 20,
-    color: "#aa708b",
+  navText: {
+    color: "#fff",
+    fontSize: 14,
+    marginHorizontal: 10,
+  },
+  settingsIcon: {
+    width: 30,
+    height: 30,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 10,
-    color: "#4B1E35",
+    color: "#2e4057",
+    textAlign: "center",
+    marginVertical: 20,
   },
   imageContainer: {
-    marginTop: 10,
-    width: 200,
-    height: 350,
-    backgroundColor: "#ddd",
+    width: "100%",
+    height: 200,
+    backgroundColor: "#d9d9d9",
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    marginBottom: 20,
   },
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 20,
+    borderRadius: 10,
   },
   imagePlaceholder: {
-    color: "#555",
+    fontSize: 16,
+    color: "#666",
+  },
+  descriptionText: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 10,
     textAlign: "center",
-    fontSize: 12,
   },
   input: {
-    width: "90%",
-    backgroundColor: "white",
+    width: "100%",
+    height: 120,
+    backgroundColor: "#fff",
+    borderColor: "#ccc",
+    borderWidth: 1,
     borderRadius: 10,
-    padding: 15,
-    fontSize: 16,
-    marginBottom: 10,
-    minHeight: 120,
+    padding: 10,
+    fontSize: 14,
+    color: "#000",
+    marginBottom: 20,
     textAlignVertical: "top",
   },
   submitButton: {
-    backgroundColor: "#E08989",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    marginTop: 20,
+    width: "100%",
+    height: 50,
+    backgroundColor: "#2e4057",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   submitButtonText: {
-    color: "white",
+    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
   },
 });
+
+export default styles;

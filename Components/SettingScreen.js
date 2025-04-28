@@ -20,7 +20,6 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={SettingStyles.container}>
       <Text style={SettingStyles.title}>Settings</Text>
-
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Profile")}>
         <Text style={SettingStyles.settingText}>Profile</Text>
       </TouchableOpacity>

@@ -1,63 +1,79 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import styles from "../StyleSheet/LoginStyles"; 
-import { saveUser, getUsers } from "./UsersArray"; // Import AsyncStorage functions
+import { View, Text, TextInput, TouchableOpacity, Image, ImageBackground, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "../StyleSheet/SignUpStyles";
+import sampleDogImage from "../assets/sampledog.jpg";
 
 export default function SignUpScreen({ navigation }) {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignUp = async () => {
-    if (!fullName || !email || !username || !password) {
-      Alert.alert("Error", "All fields are required!");
+    if (!username || !password || !confirmPassword) {
+      Alert.alert("Error", "Please fill in all fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      Alert.alert("Error", "Passwords do not match.");
       return;
     }
 
-    if (!email.includes("@")) {
-      Alert.alert("Error", "Please enter a valid email address.");
-      return;
+    try {
+      // Save user credentials in AsyncStorage
+      const users = JSON.parse(await AsyncStorage.getItem("users")) || [];
+      const userExists = users.find((user) => user.username === username);
+
+      if (userExists) {
+        Alert.alert("Error", "Username already exists.");
+        return;
+      }
+
+      users.push({ username, password });
+      await AsyncStorage.setItem("users", JSON.stringify(users));
+
+      Alert.alert("Success", "Account created successfully!");
+      navigation.navigate("Login");
+    } catch (error) {
+      Alert.alert("Error", "Something went wrong. Please try again.");
     }
-
-    // Check if username already exists
-    const users = await getUsers();
-    const existingUser = users.find((u) => u.username === username);
-    if (existingUser) {
-      Alert.alert("Error", "Username is already taken.");
-      return;
-    }
-
-    // Save user to AsyncStorage
-    const newUser = { fullName, email, username, password };
-    await saveUser(newUser);
-
-    Alert.alert("Success", "Account created successfully!");
-    navigation.navigate("Login"); // Redirect to login screen
   };
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: "https://wallpapercave.com/wp/wp6516704.jpg" }} style={styles.background} />
+    <ImageBackground source={sampleDogImage} style={styles.background}>
+      <View style={styles.container}>
+        <Text style={styles.appTitle}>TailWatch</Text>
+        <Text style={styles.accountCreationTitle}>Account Creation</Text>
 
-      <View style={styles.loginBox}>
-        <Text style={styles.title}>Create Account</Text>
-
-        <TextInput placeholder="FULL NAME" style={styles.input} placeholderTextColor="#999" value={fullName} onChangeText={setFullName} />
-        <TextInput placeholder="EMAIL" style={styles.input} placeholderTextColor="#999" keyboardType="email-address" value={email} onChangeText={setEmail} />
-        <TextInput placeholder="USERNAME" style={styles.input} placeholderTextColor="#999" value={username} onChangeText={setUsername} />
-        <TextInput placeholder="PASSWORD" style={styles.input} placeholderTextColor="#999" secureTextEntry value={password} onChangeText={setPassword} />
-
-        <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
-          <Text style={styles.signupText}>Sign Up</Text>
-          <FontAwesome name="paw" size={20} color="#fff" style={{ marginLeft: 10 }} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.bottomText}>Already have an account?</Text>
-        </TouchableOpacity>
+        <View style={styles.signUpBox}>
+          <TextInput
+            placeholder="USERNAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput
+            placeholder="PASSWORD"
+            style={styles.input}
+            placeholderTextColor="#999"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TextInput
+            placeholder="CONFIRM PASSWORD"
+            style={styles.input}
+            placeholderTextColor="#999"
+            secureTextEntry
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
+            <Text style={styles.createAccountButtonText}>CREATE ACCOUNT</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
