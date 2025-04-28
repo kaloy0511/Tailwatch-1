@@ -34,7 +34,7 @@ const LostScreen = () => {
       </View>
 
       {/* Lost Pets Section */}
-      <Text style={lostPetStyles.title}>Community Alerts & Events</Text>
+      <Text style={lostPetStyles.title}>Lost Pets</Text>
       
       <FlatList
         data={lostPets}

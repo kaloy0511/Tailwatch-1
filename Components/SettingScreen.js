@@ -3,10 +3,8 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import SettingStyles from "../StyleSheet/SettingStyles";
-import { useNavigation } from "@react-navigation/native";
 
-const SettingsScreen = () => {
-  const navigation = useNavigation();
+const SettingsScreen = ({ navigation }) => {
   
   // Logout function
   const handleLogout = async () => {
@@ -21,11 +19,6 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={SettingStyles.container}>
-      {/* Back Button to Home Screen */}
-      <TouchableOpacity style={SettingStyles.backButton} onPress={() => navigation.navigate("Home")}>
-        <Text style={SettingStyles.backButtonText}>Back</Text>
-      </TouchableOpacity>
-      
       <Text style={SettingStyles.title}>Settings</Text>
 
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Profile")}>
@@ -34,7 +27,7 @@ const SettingsScreen = () => {
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("PetScreen")}>
         <Text style={SettingStyles.settingText}>Pet</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("HelpScreen")}>
+      <TouchableOpacity style={SettingStyles.settingOption}onPress={() => navigation.navigate("Help")}>
         <Text style={SettingStyles.settingText}>Help</Text>
       </TouchableOpacity>
 

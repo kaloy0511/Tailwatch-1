@@ -14,6 +14,7 @@ import NotificationScreen from "./Components/NotificationScreen";
 import ProfileScreen from "./Components/ProfileScreen";
 import EditProfileScreen from "./Components/EditProfileScreen";
 import PetScreen from "./Components/PetScreen";
+import HelpScreen from "./Components/HelpScreen";
 
 
 const Stack = createStackNavigator();
@@ -33,6 +34,8 @@ const App = () => {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         <Stack.Screen name="PetScreen" component={PetScreen} />
+        <Stack.Screen name="Help" component={HelpScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
