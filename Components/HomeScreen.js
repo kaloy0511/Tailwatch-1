@@ -7,17 +7,17 @@ import homeStyles from "../StyleSheet/HomeStyle";
 const communityPosts = [
   {
     id: "1",
-    name: "Bernardino",
+    name: "Nicolas Cage",
     post: "These sweet and loving bundles of joy are ready to become your new best friend!",
-    image: require("../assets/samplepost.png"), 
-    profile: require("../assets/Belarmino.jpg"),
+    image: null, // Add image asset here
+    profile: null, // Add profile image asset here
   },
   {
     id: "2",
-    name: "LE AM",
+    name: "Omack G",
     post: "Save a life! Adopt or foster. Since our home has yet to be returned to us.",
-    image: require("../assets/samplepost.png"),
-    profile: require("../assets/Amador.jpg"),
+    image: null, // Add image asset here
+    profile: null, // Add profile image asset here
   },
 ];
 
