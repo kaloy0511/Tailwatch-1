@@ -20,7 +20,7 @@ const SettingsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={SettingStyles.container}>
       <Text style={SettingStyles.title}>Settings</Text>
-      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Profile")}>
+      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("ProfileScreen", { userId: "USER_ID_HERE" })}>
         <Text style={SettingStyles.settingText}>Profile</Text>
       </TouchableOpacity>
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("PetScreen")}>

@@ -53,10 +53,40 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    res.status(200).json({ message: "Login successful" });
+    // Return userId in the response
+    res.status(200).json({ message: "Login successful", userId: user._id });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
 });
+  
+// Fetch User Details Route
+router.get("/profile", async (req, res) => {
+  const { userId } = req.query; // Assuming the user ID is passed as a query parameter
+
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId).select("firstName middleInitials lastName username email");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      firstName: user.firstName,
+      middleInitial: user.middleInitials, // Use the correct field name
+      lastName: user.lastName,
+      username: user.username,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
+
 
 module.exports = router;
