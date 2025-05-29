@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, ImageBackground, Alert } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import styles from "../StyleSheet/LoginStyles";
+import sampleDogImage from "../assets/sampledog.jpg";
 
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -13,19 +17,20 @@ export default function LoginScreen({ navigation }) {
     }
 
     try {
+      // Send login request to the backend
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ email: username, password }), // Assuming username is the email
       });
 
       const data = await response.json();
 
       if (response.ok) {
         Alert.alert("Success", "Login successful!");
-        navigation.navigate("Home");
+        navigation.navigate("Home"); // Navigate to the Home screen
       } else {
         Alert.alert("Error", data.message || "Invalid username or password.");
       }
@@ -36,70 +41,73 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Logo and Title */}
-      <View style={styles.titleContainer}>
+    <ImageBackground source={sampleDogImage} style={styles.background}>
+      <View style={styles.container}>
+        {/* Logo */}
         <Image
-          source={require("../assets/dog-icon.png")} // Replace with your dog icon
-          style={styles.dogIcon}
+          source={{ uri: "https://via.placeholder.com/100" }} // Replace with your logo URL
+          style={styles.logo}
         />
+
+        {/* Title */}
         <Text style={styles.appTitle}>TailWatch</Text>
-      </View>
 
-      {/* Login Form */}
-      <View style={styles.formContainer}>
-        <Text style={styles.label}>USERNAME</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your username"
-          placeholderTextColor="#999"
-          value={username}
-          onChangeText={setUsername}
-        />
+        <View style={styles.loginBox}>
+          <TextInput
+            placeholder="EMAIL"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={username}
+            onChangeText={setUsername}
+          />
 
-        <Text style={styles.label}>PASSWORD</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+          <View style={[styles.passwordContainer, isPasswordFocused && styles.inputFocused]}>
+            <TextInput
+              placeholder="PASSWORD"
+              style={styles.passwordInput}
+              placeholderTextColor="#999"
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={setPassword}
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.showPasswordButton}>
+              <FontAwesome name={showPassword ? "eye-slash" : "eye"} size={20} color="#000" />
+            </TouchableOpacity>
+          </View>
 
-        <TouchableOpacity onPress={() => Alert.alert("Forgot Password")} style={styles.forgotPassword}>
-          <Text style={styles.forgotPasswordText}>forgot password?</Text>
-        </TouchableOpacity>
+          <Text style={styles.forgotPassword}>forgot password?</Text>
 
-        {/* Buttons */}
-        <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate("SignUp")}>
-            <Text style={styles.buttonText}>SIGN-UP</Text>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+              <Text style={styles.buttonText}>LOGIN</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate("SignUp")}>
+              <Text style={styles.buttonText}>SIGN-UP</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.registerText}>Register your pet?</Text>
+          <TouchableOpacity style={styles.petSignUpButton}>
+            <Text style={styles.petSignUpText}>SIGN-UP</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.registerText}>Register your pet?</Text>
-        <TouchableOpacity style={styles.petSignUpButton}>
-          <Text style={styles.petSignUpText}>SIGN-UP</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.orLoginWith}>Or login with</Text>
 
-      {/* Social Login */}
-      <Text style={styles.orLoginWith}>Or login with</Text>
-      <View style={styles.socialButtons}>
-        <TouchableOpacity style={styles.socialButton}>
-          {/* Empty placeholder for Google */}
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          {/* Empty placeholder for Facebook */}
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.socialButton}>
-          {/* Empty placeholder for Twitter */}
-        </TouchableOpacity>
+        <View style={styles.socialButtons}>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="google" size={24} color="#DB4437" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="facebook" size={24} color="#4267B2" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <FontAwesome name="twitter" size={24} color="#1DA1F2" />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
