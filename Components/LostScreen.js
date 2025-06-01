@@ -28,7 +28,7 @@ const lostPets = [
   {
     id: "4",
     image: require("../assets/lostcat2.jpg"),
-    what: "Lost Cat - Kiwi",
+    what: "Lost Bird - Kiwi",
     when: "March 4, 2025",
     where: "Tower 4, Balcony Area",
   },

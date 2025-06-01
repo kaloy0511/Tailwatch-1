@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, ImageBackground, Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import styles from "../StyleSheet/LoginStyles";
 import sampleDogImage from "../assets/sampledog.jpg";
 
@@ -17,25 +18,17 @@ export default function LoginScreen({ navigation }) {
     }
 
     try {
-      // Send login request to the backend
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: username, password }), // Assuming username is the email
-      });
+      // Retrieve user credentials from AsyncStorage
+      const users = JSON.parse(await AsyncStorage.getItem("users")) || [];
+      const user = users.find((user) => user.username === username && user.password === password);
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (user) {
         Alert.alert("Success", "Login successful!");
-        navigation.navigate("Home"); // Navigate to the Home screen
+        navigation.navigate("Home");
       } else {
-        Alert.alert("Error", data.message || "Invalid username or password.");
+        Alert.alert("Error", "Invalid username or password.");
       }
     } catch (error) {
-      console.error(error);
       Alert.alert("Error", "Something went wrong. Please try again.");
     }
   };
@@ -54,7 +47,7 @@ export default function LoginScreen({ navigation }) {
 
         <View style={styles.loginBox}>
           <TextInput
-            placeholder="EMAIL"
+            placeholder="USERNAME"
             style={styles.input}
             placeholderTextColor="#999"
             value={username}
