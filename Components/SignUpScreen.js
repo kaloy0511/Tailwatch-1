@@ -1,27 +1,20 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert } from "react-native";
 import styles from "../StyleSheet/SignUpStyles";
+import sampleDogImage from "../assets/sampledog.jpg";
 
 export default function SignUpScreen({ navigation }) {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dob: "",
-    email: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [firstName, setFirstName] = useState("");
+  const [middleInitial, setMiddleInitial] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleInputChange = (field, value) => {
-    setFormData({ ...formData, [field]: value });
-  };
-
-  const handleSignUp = () => {
-    const { firstName, lastName, dob, email, username, password, confirmPassword } = formData;
-
-    if (!firstName || !lastName || !dob || !email || !username || !password || !confirmPassword) {
-      Alert.alert("Error", "Please fill in all fields.");
+  const handleSignUp = async () => {
+    if (!firstName || !lastName || !email || !username || !password || !confirmPassword) {
+      Alert.alert("Error", "Please fill in all required fields.");
       return;
     }
 
@@ -30,88 +23,100 @@ export default function SignUpScreen({ navigation }) {
       return;
     }
 
-    // Handle sign-up logic here (e.g., API call)
-    Alert.alert("Success", "Account created successfully!");
-    navigation.navigate("Login");
+    try {
+      // Send registration data to the backend
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          middleInitial,
+          lastName,
+          email,
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert("Success", "Account created successfully!");
+        navigation.navigate("Login");
+      } else {
+        Alert.alert("Error", data.message || "Unable to register.");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Something went wrong. Please try again.");
+    }
   };
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        {/* Placeholder for the image */}
-        <View style={styles.headerImagePlaceholder} />
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.backButtonIcon}>←</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Title */}
-      <View style={styles.titleContainer}>
+    <ImageBackground source={sampleDogImage} style={styles.background}>
+      <View style={styles.container}>
         <Text style={styles.appTitle}>TailWatch</Text>
-      </View>
-      <Text style={styles.subtitle}>Account Creation</Text>
+        <Text style={styles.accountCreationTitle}>Account Creation</Text>
 
-      {/* Form */}
-      <View style={styles.formContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="First Name"
-          placeholderTextColor="#999"
-          value={formData.firstName}
-          onChangeText={(value) => handleInputChange("firstName", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Last Name"
-          placeholderTextColor="#999"
-          value={formData.lastName}
-          onChangeText={(value) => handleInputChange("lastName", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Date of Birth"
-          placeholderTextColor="#999"
-          value={formData.dob}
-          onChangeText={(value) => handleInputChange("dob", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#999"
-          value={formData.email}
-          onChangeText={(value) => handleInputChange("email", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Username"
-          placeholderTextColor="#999"
-          value={formData.username}
-          onChangeText={(value) => handleInputChange("username", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={formData.password}
-          onChangeText={(value) => handleInputChange("password", value)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={formData.confirmPassword}
-          onChangeText={(value) => handleInputChange("confirmPassword", value)}
-        />
-        <TouchableOpacity style={styles.submitButton} onPress={handleSignUp}>
-          <Text style={styles.submitButtonText}>CREATE ACCOUNT</Text>
-        </TouchableOpacity>
+        <View style={styles.signUpBox}>
+          <TextInput
+            placeholder="FIRST NAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+          <TextInput
+            placeholder="MIDDLE INITIAL"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={middleInitial}
+            onChangeText={setMiddleInitial}
+          />
+          <TextInput
+            placeholder="LAST NAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={lastName}
+            onChangeText={setLastName}
+          />
+          <TextInput
+            placeholder="EMAIL"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            placeholder="USERNAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={username}
+            onChangeText={setUsername}
+          />
+          <TextInput
+            placeholder="PASSWORD"
+            style={styles.input}
+            placeholderTextColor="#999"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TextInput
+            placeholder="CONFIRM PASSWORD"
+            style={styles.input}
+            placeholderTextColor="#999"
+            secureTextEntry
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
+            <Text style={styles.createAccountButtonText}>CREATE ACCOUNT</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
