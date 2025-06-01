@@ -15,7 +15,7 @@ import ProfileScreen from "./Components/ProfileScreen";
 import EditProfileScreen from "./Components/EditProfileScreen";
 import PetScreen from "./Components/PetScreen";
 import HelpScreen from "./Components/HelpScreen";
-
+import Map from "./Components/Map"; 
 
 const Stack = createStackNavigator();
 
@@ -35,7 +35,7 @@ const App = () => {
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         <Stack.Screen name="PetScreen" component={PetScreen} />
         <Stack.Screen name="Help" component={HelpScreen} />
-
+        <Stack.Screen name="Map" component={Map} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );

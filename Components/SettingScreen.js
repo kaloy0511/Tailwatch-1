@@ -1,20 +1,19 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Alert, Button, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import SettingStyles from "../StyleSheet/SettingStyles";
 
 const SettingsScreen = ({ navigation }) => {
-  
   // Logout function
   const handleLogout = async () => {
     try {
-        await AsyncStorage.removeItem("currentUser"); // Remove logged-in user
-        Alert.alert("Logged Out", "You have been logged out successfully!");
-        navigation.replace("Login");
-      } catch (error) {
-        console.error("Error logging out:", error);
-      }
+      await AsyncStorage.removeItem("currentUser"); // Remove logged-in user
+      Alert.alert("Logged Out", "You have been logged out successfully!");
+      navigation.replace("Login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   return (
@@ -26,7 +25,7 @@ const SettingsScreen = ({ navigation }) => {
       <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("PetScreen")}>
         <Text style={SettingStyles.settingText}>Pet</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={SettingStyles.settingOption}onPress={() => navigation.navigate("Help")}>
+      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Help")}>
         <Text style={SettingStyles.settingText}>Help</Text>
       </TouchableOpacity>
 
@@ -34,8 +33,23 @@ const SettingsScreen = ({ navigation }) => {
       <TouchableOpacity style={SettingStyles.settingOption} onPress={handleLogout}>
         <Text style={[SettingStyles.settingText, { color: "red" }]}>Logout</Text>
       </TouchableOpacity>
+
+      {/* GPS Map Button */}
+      <View style={styles.container}>
+        <Button
+          title="View GPS Map"
+          onPress={() => navigation.navigate("Map")} // Update to Map
+        />
+      </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+});
 
 export default SettingsScreen;
