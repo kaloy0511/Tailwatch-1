@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Platform,
+} from "react-native";
+import DatePicker from "react-native-date-picker";
 import styles from "../StyleSheet/SignUpStyles";
-import sampleDogImage from "../assets/sampledog.jpg";
 
 export default function SignUpScreen({ navigation }) {
   const [firstName, setFirstName] = useState("");
@@ -12,9 +18,21 @@ export default function SignUpScreen({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [birthdate, setBirthdate] = useState(new Date());
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const handleSignUp = async () => {
-    if (!firstName || !lastName || !email || !username || !password || !confirmPassword) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !username ||
+      !password ||
+      !confirmPassword ||
+      !phoneNumber ||
+      !birthdate
+    ) {
       Alert.alert("Error", "Please fill in all required fields.");
       return;
     }
@@ -25,7 +43,6 @@ export default function SignUpScreen({ navigation }) {
     }
 
     try {
-      // Send registration data to the backend
       const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
@@ -38,17 +55,14 @@ export default function SignUpScreen({ navigation }) {
           email,
           username,
           password,
+          phoneNumber,
+          birthdate,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Save user credentials in AsyncStorage
-        const users = JSON.parse((await AsyncStorage.getItem("users")) || "[]");
-        users.push({ username, email });
-        await AsyncStorage.setItem("users", JSON.stringify(users));
-
         Alert.alert("Success", "Account created successfully!");
         navigation.navigate("Login");
       } else {
@@ -60,40 +74,12 @@ export default function SignUpScreen({ navigation }) {
   };
 
   return (
-    <ImageBackground source={sampleDogImage} style={styles.background}>
+    <View style={styles.background}>
       <View style={styles.container}>
         <Text style={styles.appTitle}>TailWatch</Text>
         <Text style={styles.accountCreationTitle}>Account Creation</Text>
 
         <View style={styles.signUpBox}>
-          <TextInput
-            placeholder="FIRST NAME"
-            style={styles.input}
-            placeholderTextColor="#999"
-            value={firstName}
-            onChangeText={setFirstName}
-          />
-          <TextInput
-            placeholder="MIDDLE INITIAL"
-            style={styles.input}
-            placeholderTextColor="#999"
-            value={middleInitial}
-            onChangeText={setMiddleInitial}
-          />
-          <TextInput
-            placeholder="LAST NAME"
-            style={styles.input}
-            placeholderTextColor="#999"
-            value={lastName}
-            onChangeText={setLastName}
-          />
-          <TextInput
-            placeholder="EMAIL"
-            style={styles.input}
-            placeholderTextColor="#999"
-            value={email}
-            onChangeText={setEmail}
-          />
           <TextInput
             placeholder="USERNAME"
             style={styles.input}
@@ -117,11 +103,61 @@ export default function SignUpScreen({ navigation }) {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
           />
+          <TextInput
+            placeholder="FIRST NAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+          <TextInput
+            placeholder="LAST NAME"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={lastName}
+            onChangeText={setLastName}
+          />
+          <TextInput
+            placeholder="EMAIL"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            placeholder="Phone Number"
+            style={styles.input}
+            placeholderTextColor="#999"
+            keyboardType="phone-pad"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+          />
+          <TouchableOpacity
+            style={styles.dateInput}
+            onPress={() => setIsDatePickerOpen(true)}
+          >
+            <Text style={{ color: "#999" }}>
+              {birthdate ? birthdate.toLocaleDateString() : "dd/mm/yyyy"}
+            </Text>
+          </TouchableOpacity>
+          <DatePicker
+            modal
+            open={isDatePickerOpen}
+            date={birthdate}
+            mode="date"
+            onConfirm={(date) => {
+              setIsDatePickerOpen(false);
+              setBirthdate(date);
+            }}
+            onCancel={() => {
+              setIsDatePickerOpen(false);
+            }}
+          />
           <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
-            <Text style={styles.createAccountButtonText}>CREATE ACCOUNT</Text>
+            <Text style={styles.createAccountButtonText}>Create Account</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 }

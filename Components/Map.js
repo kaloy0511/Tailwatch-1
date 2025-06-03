@@ -8,7 +8,7 @@ export default function Map() {
   useEffect(() => {
     const fetchGpsData = async () => {
       try {
-        const response = await fetch("http://192.168.123.51/gps"); // Replace <ARDUINO_IP_ADDRESS> with the actual IP
+        const response = await fetch("http://10.25.4.23/gps"); // For Android Emulator
         if (!response.ok) {
           throw new Error("Failed to fetch GPS data");
         }

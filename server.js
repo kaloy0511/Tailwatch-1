@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/tailwatch", {
+mongoose.connect("mongodb://localhost:27017/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -29,6 +29,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  birthdate: { type: Date, required: true },
 });
 const User = mongoose.model("User", userSchema);
 
@@ -36,7 +38,16 @@ const User = mongoose.model("User", userSchema);
 
 // Registration Route
 app.post("/api/auth/register", async (req, res) => {
-  const { firstName, middleInitial, lastName, email, username, password } = req.body;
+  const {
+    firstName,
+    middleInitial,
+    lastName,
+    email,
+    username,
+    password,
+    phoneNumber,
+    birthdate,
+  } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -47,6 +58,8 @@ app.post("/api/auth/register", async (req, res) => {
       email,
       username,
       password: hashedPassword,
+      phoneNumber,
+      birthdate,
     });
 
     await newUser.save();

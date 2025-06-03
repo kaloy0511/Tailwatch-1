@@ -1,93 +1,69 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
-
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   background: {
     flex: 1,
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
+    backgroundColor: "#fcefd7", // Light beige background
+    justifyContent: "center",
+    alignItems: "center",
   },
   container: {
-    flex: 1,
-    justifyContent: "center",
+    width: "90%",
+    maxWidth: 400,
     alignItems: "center",
-    paddingHorizontal: 20,
-  },
-  logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 10,
   },
   appTitle: {
+    fontFamily: "Fredoka One",
     fontSize: 32,
-    fontWeight: "bold",
-    color: "#2e4057",
-    marginBottom: 5,
+    color: "#4a6a85",
+    marginBottom: 16,
   },
   accountCreationTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#2e4057",
-    marginBottom: 20,
+    fontFamily: "Fredoka One",
+    fontSize: 24,
+    color: "#4a6a85",
+    marginBottom: 16,
   },
   signUpBox: {
-    width: "85%",
-    maxWidth: 400,
-    backgroundColor: "#eaf4f4",
-    padding: 20,
-    borderRadius: 15,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
-    elevation: 5,
+    backgroundColor: "#a9c3ca", // Light blue background
+    borderRadius: 16,
+    padding: 24,
+    width: "100%",
   },
   input: {
-    width: "100%",
-    height: 45,
-    backgroundColor: "#f0f0f0",
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    fontSize: 14,
-    color: "#000",
-    marginBottom: 15,
+    borderRadius: 30,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    backgroundColor: "#fff",
+    color: "#4a6a85",
+    fontSize: 16,
+    marginBottom: 16,
+    textAlign: "center",
+    fontFamily: "Fredoka One",
   },
-  createAccountButton: {
-    width: "100%",
-    height: 50,
-    borderRadius: 10,
-    backgroundColor: "#2e4057",
+  dateInput: {
+    borderRadius: 30,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: "#fff",
+    color: "#4a6a85",
+    fontSize: 16,
+    marginBottom: 16,
+    textAlign: "center",
+    fontFamily: "Fredoka One",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 15,
+  },
+  createAccountButton: {
+    backgroundColor: "#4a6a85", // Dark blue button
+    borderRadius: 30,
+    paddingVertical: 12,
+    alignItems: "center",
+    marginTop: 16,
   },
   createAccountButtonText: {
     color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  registerText: {
-    fontSize: 14,
-    color: "#666",
-    marginTop: 10,
-  },
-  petSignUpButton: {
-    backgroundColor: "#fdb827",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    marginTop: 10,
-  },
-  petSignUpText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontFamily: "Fredoka One",
   },
 });
-
-export default styles;
