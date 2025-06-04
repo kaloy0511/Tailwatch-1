@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top", // Align text to the top for multiline input
   },
   imagePickerButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#4a6a85", // Updated button color
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   submitButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#4a6a85", // Updated button color
     borderRadius: 5,
     paddingVertical: 10,
     alignItems: "center",
