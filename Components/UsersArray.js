@@ -5,10 +5,20 @@ export const saveUser = async (user) => {
     const users = await AsyncStorage.getItem("users");
     const usersArray = users ? JSON.parse(users) : [];
 
-    usersArray.push(user);
-    await AsyncStorage.setItem("users", JSON.stringify(usersArray));
+    // Check if the user already exists and update their information
+    const updatedUsers = usersArray.map((existingUser) =>
+      existingUser.username === user.username ? user : existingUser
+    );
 
-    // Set the latest registered user as the current user (for login session)
+    // If the user doesn't exist, add them
+    const userExists = usersArray.some((existingUser) => existingUser.username === user.username);
+    if (!userExists) {
+      updatedUsers.push(user);
+    }
+
+    await AsyncStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Set the updated user as the current user
     await AsyncStorage.setItem("currentUser", JSON.stringify(user));
   } catch (error) {
     console.error("Error saving user:", error);
@@ -29,6 +39,7 @@ export const getUsers = async () => {
 export const getCurrentUser = async () => {
   try {
     const user = await AsyncStorage.getItem("currentUser");
+    console.log("Current User:", user); // Debug log
     return user ? JSON.parse(user) : null;
   } catch (error) {
     console.error("Error retrieving current user:", error);

@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-  Platform,
-} from "react-native";
-import DatePicker from "react-native-date-picker";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import styles from "../StyleSheet/SignUpStyles";
 
 export default function SignUpScreen({ navigation }) {
@@ -19,8 +11,7 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [birthdate, setBirthdate] = useState(new Date());
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [birthdate, setBirthdate] = useState("");
 
   const handleSignUp = async () => {
     if (
@@ -132,28 +123,17 @@ export default function SignUpScreen({ navigation }) {
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
-          <TouchableOpacity
-            style={styles.dateInput}
-            onPress={() => setIsDatePickerOpen(true)}
-          >
-            <Text style={{ color: "#999" }}>
-              {birthdate ? birthdate.toLocaleDateString() : "dd/mm/yyyy"}
-            </Text>
-          </TouchableOpacity>
-          <DatePicker
-            modal
-            open={isDatePickerOpen}
-            date={birthdate}
-            mode="date"
-            onConfirm={(date) => {
-              setIsDatePickerOpen(false);
-              setBirthdate(date);
-            }}
-            onCancel={() => {
-              setIsDatePickerOpen(false);
-            }}
+          <TextInput
+            placeholder="Birthdate (e.g., YYYY-MM-DD)"
+            style={styles.input}
+            placeholderTextColor="#999"
+            value={birthdate}
+            onChangeText={setBirthdate}
           />
-          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
+          <TouchableOpacity
+            style={styles.createAccountButton}
+            onPress={handleSignUp}
+          >
             <Text style={styles.createAccountButtonText}>Create Account</Text>
           </TouchableOpacity>
         </View>

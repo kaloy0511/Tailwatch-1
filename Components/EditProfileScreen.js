@@ -8,7 +8,9 @@ import { getCurrentUser, saveUser } from "./UsersArray";
 const EditProfileScreen = ({ navigation }) => {
   // State for editable user details
   const [userDetails, setUserDetails] = useState({
-    fullName: "",
+    lastName: "",
+    firstName: "",
+    phoneNumber: "",
     username: "",
     email: "",
   });
@@ -28,33 +30,33 @@ const EditProfileScreen = ({ navigation }) => {
   // Handle save action
   const handleSave = async () => {
     try {
-        // Get all users
-        const users = await AsyncStorage.getItem("users");
-        let usersArray = users ? JSON.parse(users) : [];
-    
-        // Find and update the logged-in user in usersArray
-        const updatedUsers = usersArray.map((user) => 
-          user.username === userDetails.username ? userDetails : user
-        );
-    
-        // Save updated user list
-        await AsyncStorage.setItem("users", JSON.stringify(updatedUsers));
-    
-        // Save updated current user
-        await AsyncStorage.setItem("currentUser", JSON.stringify(userDetails));
-    
-        Alert.alert("Success", "Profile updated successfully!");
-        navigation.goBack();
-      } catch (error) {
-        console.error("Error saving profile:", error);
-      }
+      // Get all users
+      const users = await AsyncStorage.getItem("users");
+      let usersArray = users ? JSON.parse(users) : [];
+
+      // Find and update the logged-in user in usersArray
+      const updatedUsers = usersArray.map((user) =>
+        user.username === userDetails.username ? userDetails : user
+      );
+
+      // Save updated user list
+      await AsyncStorage.setItem("users", JSON.stringify(updatedUsers));
+
+      // Save updated current user
+      await AsyncStorage.setItem("currentUser", JSON.stringify(userDetails));
+
+      Alert.alert("Success", "Profile updated successfully!");
+      navigation.goBack();
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
   };
 
   return (
     <SafeAreaView style={EditProfileStyles.container}>
       {/* Back Button */}
       <TouchableOpacity style={EditProfileStyles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={EditProfileStyles.backButtonText}>Back</Text> {/* Added arrow for better design */}
+        <Text style={EditProfileStyles.backButtonText}>Back</Text>
       </TouchableOpacity>
 
       {/* Title */}
@@ -62,11 +64,25 @@ const EditProfileScreen = ({ navigation }) => {
 
       {/* Input Fields */}
       <View style={EditProfileStyles.infoContainer}>
-        <Text style={EditProfileStyles.infoText}>Full Name:</Text>
+        <Text style={EditProfileStyles.infoText}>Last Name:</Text>
         <TextInput
           style={EditProfileStyles.input}
-          value={userDetails.fullName}
-          onChangeText={(text) => setUserDetails({ ...userDetails, fullName: text })}
+          value={userDetails.lastName}
+          onChangeText={(text) => setUserDetails({ ...userDetails, lastName: text })}
+        />
+
+        <Text style={EditProfileStyles.infoText}>First Name:</Text>
+        <TextInput
+          style={EditProfileStyles.input}
+          value={userDetails.firstName}
+          onChangeText={(text) => setUserDetails({ ...userDetails, firstName: text })}
+        />
+
+        <Text style={EditProfileStyles.infoText}>Phone Number:</Text>
+        <TextInput
+          style={EditProfileStyles.input}
+          value={userDetails.phoneNumber}
+          onChangeText={(text) => setUserDetails({ ...userDetails, phoneNumber: text })}
         />
 
         <Text style={EditProfileStyles.infoText}>Username:</Text>

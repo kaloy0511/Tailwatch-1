@@ -23,7 +23,7 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={ProfileStyles.container}>
       {/* Back Button */}
       <TouchableOpacity style={ProfileStyles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={ProfileStyles.backButtonText}>Back</Text> {/* Added arrow for consistency */}
+        <Text style={ProfileStyles.backButtonText}>Back</Text>
       </TouchableOpacity>
 
       {/* Title */}
@@ -47,9 +47,21 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={ProfileStyles.userId}>{userDetails.username || "N/A"}</Text>
 
           <View style={ProfileStyles.infoContainer}>
-            <Text style={ProfileStyles.infoText}>Full name: {userDetails.fullName || "N/A"}</Text>
-            <Text style={ProfileStyles.infoText}>Username: {userDetails.username || "N/A"}</Text>
-            <Text style={ProfileStyles.infoText}>Email: {userDetails.email || "N/A"}</Text>
+            <Text style={ProfileStyles.infoText}>
+              Last Name: {userDetails.lastName || "N/A"}
+            </Text>
+            <Text style={ProfileStyles.infoText}>
+              First Name: {userDetails.firstName || "N/A"}
+            </Text>
+            <Text style={ProfileStyles.infoText}>
+              Phone Number: {userDetails.phoneNumber || "N/A"}
+            </Text>
+            <Text style={ProfileStyles.infoText}>
+              Username: {userDetails.username || "N/A"}
+            </Text>
+            <Text style={ProfileStyles.infoText}>
+              Email: {userDetails.email || "N/A"}
+            </Text>
           </View>
         </>
       ) : (
