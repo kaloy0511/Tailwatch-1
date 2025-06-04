@@ -1,17 +1,17 @@
 import { StyleSheet } from "react-native";
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FCE8D5",
+    backgroundColor: "#fef6e4",
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    padding: 10,
-    backgroundColor: "#fff",
-    elevation: 3,
+    justifyContent: "space-between",
+    backgroundColor: "#2e4057",
+    paddingHorizontal: 15, // Increased padding for better spacing
+    paddingVertical: 15,
   },
   logo: {
     width: 50,
@@ -22,76 +22,41 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   navText: {
+    color: "#fff",
+    fontSize: 14,
     marginHorizontal: 10,
-    fontSize: 16,
-    color: "#4B1E35",
-    fontWeight: "bold",
   },
   settingsIcon: {
-    width: 30,
-    height: 30,
+    width: 35, // Increased width
+    height: 35, // Increased height
+    resizeMode: "contain", // Ensures the icon fits within the dimensions
   },
-  createPostContainer: {
-    padding: 10,
-    backgroundColor: "#fff",
-    margin: 10,
-    borderRadius: 10,
-    elevation: 3,
-  },
-  postComposer: {
+  searchBarContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
-  },
-  composerPic: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 10,
-  },
-  createPostInput: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    padding: 10,
-    fontSize: 16,
     backgroundColor: "#fff",
+    margin: 10,
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    elevation: 3,
   },
-  imageUploadLabel: {
-    marginLeft: 10,
-    marginRight: 10,
-    padding: 5,
-    borderRadius: 5,
-    backgroundColor: "#E08989",
-    justifyContent: "center",
-    alignItems: "center",
+  searchBar: {
+    flex: 1,
+    height: 40,
+    fontSize: 14,
+    color: "#000",
   },
-  postButton: {
-    backgroundColor: "#E08989",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-  },
-  postButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  composerPreview: {
-    alignItems: "center",
-    marginTop: 10,
-  },
-  previewImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+  searchIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
   },
   postContainer: {
-    margin: 10,
     backgroundColor: "#fff",
+    margin: 10,
     borderRadius: 10,
-    elevation: 3,
-    padding: 10,
+    padding: 15,
+    elevation: 2,
   },
   profileSection: {
     flexDirection: "row",
@@ -107,34 +72,43 @@ export default StyleSheet.create({
   userName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#4B1E35",
+    color: "#2e4057",
   },
   userResidence: {
-    fontSize: 14,
-    color: "#999",
+    fontSize: 12,
+    color: "#666",
   },
   followText: {
     marginLeft: "auto",
-    fontSize: 14,
-    color: "#E08989",
+    color: "#2e4057",
+    fontSize: 12,
     fontWeight: "bold",
   },
   postBox: {
     marginTop: 10,
   },
   postText: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#333",
     marginBottom: 10,
   },
   postImage: {
     width: "100%",
-    height: 200,
+    height: 150,
     borderRadius: 10,
   },
-  timestamp: {
-    fontSize: 12,
-    color: "#999",
-    marginTop: 5,
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#2e4057",
+    paddingVertical: 10,
+  },
+  navIcon: {
+    width: 30,
+    height: 30,
+    resizeMode: "contain",
   },
 });
+
+export default styles;

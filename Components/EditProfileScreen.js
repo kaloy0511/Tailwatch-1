@@ -9,16 +9,16 @@ const EditProfileScreen = ({ navigation }) => {
   // State for editable user details
   const [userDetails, setUserDetails] = useState({
     fullName: "",
-    email: "",
     username: "",
+    email: "",
   });
 
   // Load current user data
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = await AsyncStorage.getItem("currentUser");
+      const user = await getCurrentUser();
       if (user) {
-        setUserDetails(JSON.parse(user)); // Populate state with user details
+        setUserDetails(user);
       }
     };
 
@@ -28,26 +28,26 @@ const EditProfileScreen = ({ navigation }) => {
   // Handle save action
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDetails),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // Get all users
+        const users = await AsyncStorage.getItem("users");
+        let usersArray = users ? JSON.parse(users) : [];
+    
+        // Find and update the logged-in user in usersArray
+        const updatedUsers = usersArray.map((user) => 
+          user.username === userDetails.username ? userDetails : user
+        );
+    
+        // Save updated user list
+        await AsyncStorage.setItem("users", JSON.stringify(updatedUsers));
+    
+        // Save updated current user
+        await AsyncStorage.setItem("currentUser", JSON.stringify(userDetails));
+    
+        Alert.alert("Success", "Profile updated successfully!");
+        navigation.goBack();
+      } catch (error) {
+        console.error("Error saving profile:", error);
       }
-
-      const data = await response.json();
-      await AsyncStorage.setItem("currentUser", JSON.stringify(data.user)); // Update AsyncStorage with updated user details
-      Alert.alert("Success", "Profile updated successfully!");
-      navigation.goBack();
-    } catch (error) {
-      console.error("Error saving profile:", error);
-      Alert.alert("Error", "Something went wrong. Please try again.");
-    }
   };
 
   return (
@@ -65,21 +65,21 @@ const EditProfileScreen = ({ navigation }) => {
         <Text style={EditProfileStyles.infoText}>Full Name:</Text>
         <TextInput
           style={EditProfileStyles.input}
-          value={userDetails.fullName || ""}
+          value={userDetails.fullName}
           onChangeText={(text) => setUserDetails({ ...userDetails, fullName: text })}
         />
 
         <Text style={EditProfileStyles.infoText}>Username:</Text>
         <TextInput
           style={EditProfileStyles.input}
-          value={userDetails.username || ""}
+          value={userDetails.username}
           onChangeText={(text) => setUserDetails({ ...userDetails, username: text })}
         />
 
         <Text style={EditProfileStyles.infoText}>Email:</Text>
         <TextInput
           style={EditProfileStyles.input}
-          value={userDetails.email || ""}
+          value={userDetails.email}
           onChangeText={(text) => setUserDetails({ ...userDetails, email: text })}
         />
       </View>

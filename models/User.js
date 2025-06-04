@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  fullName: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  middleInitials: {
+    type: String,
+    required: false,
+  },
+  lastName: {
     type: String,
     required: true,
   },
@@ -19,7 +27,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  birthdate: {
+    type: Date,
+    required: true,
+  },
 });
 
-// Prevent overwriting the model if it already exists
 module.exports = mongoose.model("User", userSchema);

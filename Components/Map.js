@@ -8,7 +8,7 @@ export default function Map() {
   useEffect(() => {
     const fetchGpsData = async () => {
       try {
-        const response = await fetch("http://192.168.123.51/gps"); // For Android Emulator
+        const response = await fetch("http://10.25.4.23/gps"); // For Android Emulator
         if (!response.ok) {
           throw new Error("Failed to fetch GPS data");
         }
@@ -57,12 +57,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FCE8D5", // Match background color with other screens
+    backgroundColor: "#f5f5f5",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#4B1E35",
     marginBottom: 20,
   },
   dataContainer: {
@@ -70,17 +69,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#fff",
     elevation: 5,
-    width: "90%",
   },
   dataText: {
-    fontSize: 16,
-    color: "#333",
+    fontSize: 18,
     marginBottom: 10,
   },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FCE8D5",
   },
 });

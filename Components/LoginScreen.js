@@ -32,7 +32,7 @@ export default function LoginScreen({ navigation }) {
       const data = await response.json();
 
       if (response.ok) {
-        await AsyncStorage.setItem("currentUser", JSON.stringify(data.user)); // Store user details
+        await AsyncStorage.setItem("currentUser", JSON.stringify(data.user));
         Alert.alert("Success", "Login successful!");
         navigation.navigate("Home");
       } else {

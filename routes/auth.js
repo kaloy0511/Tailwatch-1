@@ -58,26 +58,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Update User Profile Route
-router.put("/update", async (req, res) => {
-  const { username, fullName, email } = req.body;
-
-  try {
-    const user = await User.findOneAndUpdate(
-      { username },
-      { fullName, email },
-      { new: true } // Return the updated document
-    );
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json({ message: "Profile updated successfully", user });
-  } catch (error) {
-    console.error("Error updating profile:", error);
-    res.status(500).json({ message: "Server error", error: error.message });
-  }
-});
-
 module.exports = router;

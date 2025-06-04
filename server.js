@@ -4,9 +4,6 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const authRoutes = require("./routes/auth"); // Import auth routes
-const User = require("./models/User"); // Import the User model
-
 const app = express();
 
 // Middleware
@@ -14,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/tailwatch", { // Add the database name 'tailwatch'
+mongoose.connect("mongodb://localhost:27017/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -23,6 +20,19 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
   console.log("Connected to MongoDB");
 });
+
+// User Schema and Model
+const userSchema = new mongoose.Schema({
+  firstName: { type: String, required: true },
+  middleInitial: { type: String },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  birthdate: { type: Date, required: true },
+});
+const User = mongoose.model("User", userSchema);
 
 // Routes
 
@@ -81,9 +91,6 @@ app.post("/api/auth/login", async (req, res) => {
     res.status(500).json({ message: "Error logging in." });
   }
 });
-
-// Register auth routes
-app.use("/api/auth", authRoutes);
 
 // Start the Server
 app.listen(5000, () => {

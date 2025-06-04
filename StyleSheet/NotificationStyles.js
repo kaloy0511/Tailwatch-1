@@ -3,14 +3,14 @@ import { StyleSheet } from "react-native";
 const NotificationStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FCE8D5",
+    backgroundColor: "#fceed3",
     alignItems: "center",
     padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#4B1E35",
+    color: "#6d4c41",
     marginBottom: 20,
   },
   listContainer: {
@@ -19,10 +19,9 @@ const NotificationStyles = StyleSheet.create({
   notificationBox: {
     width: "100%",
     padding: 15,
-    backgroundColor: "#fff",
+    backgroundColor: "#dcdcdc",
     borderRadius: 10,
     marginBottom: 10,
-    elevation: 3,
   },
   notificationText: {
     fontSize: 16,
@@ -31,13 +30,13 @@ const NotificationStyles = StyleSheet.create({
   backButton: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: "#E08989",
+    backgroundColor: "#aa708b",
     borderRadius: 8,
     alignItems: "center",
     width: "50%",
   },
   backButtonText: {
-    color: "#fff",
+    color: "white",
     fontSize: 16,
     fontWeight: "bold",
   },
