@@ -11,17 +11,17 @@ export default StyleSheet.create({
     position: "absolute",
     top: 20,
     left: 15,
-    backgroundColor: "#fff",
+    backgroundColor: "#E08989",
     borderRadius: 10,
-    width: 60,
+    width: 50,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-
   },
   backButtonText: {
-    fontSize: 20,
-    color: "#aa708b",
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "bold",
   },
   title: {
     fontSize: 24,
@@ -59,8 +59,12 @@ export default StyleSheet.create({
     color: "#4B1E35",
   },
   infoContainer: {
-    marginTop: 10,
-    alignItems: "center",
+    marginTop: 20,
+    width: "90%",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 15,
+    elevation: 3,
   },
   infoText: {
     fontSize: 16,
@@ -70,8 +74,8 @@ export default StyleSheet.create({
   },
   editButton: {
     backgroundColor: "#E08989",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 25,
     borderRadius: 20,
     marginTop: 20,
   },

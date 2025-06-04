@@ -3,16 +3,15 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ProfileStyles from "../StyleSheet/ProfileStyles";
-import { getCurrentUser } from "./UsersArray";
 
 const ProfileScreen = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = await getCurrentUser();
+      const user = await AsyncStorage.getItem("currentUser");
       if (user) {
-        setUserDetails(user);
+        setUserDetails(JSON.parse(user)); // Parse and set user details
       }
     };
 

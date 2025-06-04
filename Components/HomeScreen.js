@@ -1,63 +1,120 @@
-import React from "react";
-import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+  Alert,
+} from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import homeStyles from "../StyleSheet/HomeStyle";
 
-const communityPosts = [
-  {
-    id: "1",
-    name: "Bernardino",
-    post: "These sweet and loving bundles of joy are ready to become your new best friend!",
-    image: require("../assets/Amador.jpg"), 
-    profile: require("../assets/Belarmino.jpg"),
-  },
-  {
-    id: "2",
-    name: "LE AM",
-    post: "Save a life! Adopt or foster. Since our home has yet to be returned to us.",
-    image: require("../assets/Amador.jpg"),
-    profile: require("../assets/Amador.jpg"),
-  },
-];
-
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const [communityPosts, setCommunityPosts] = useState([
+    {
+      id: "1",
+      name: "Drei Asian Boy",
+      post: "These sweet and loving bundles of joy are ready to become your new best friend!",
+      image: require("../assets/lostcat1.jpg"),
+      profile: require("../assets/lostcat2.jpg"),
+      timestamp: new Date().getTime() - 3600000, // 1 hour ago
+    },
+    {
+      id: "2",
+      name: "LE AM",
+      post: "Save a life! Adopt or foster. Since our home has yet to be returned to us.",
+      image: require("../assets/Amador.jpg"),
+      profile: require("../assets/Amador.jpg"),
+      timestamp: new Date().getTime() - 7200000, // 2 hours ago
+    },
+  ]);
+  const [postText, setPostText] = useState("");
+  const [postImage, setPostImage] = useState(null);
+
+  // Function to pick an image
+  const handleImageChange = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setPostImage(result.uri);
+    }
+  };
+
+  // Function to handle posting
+  const handlePost = () => {
+    if (!postText.trim()) {
+      Alert.alert("Error", "Post text cannot be empty.");
+      return;
+    }
+
+    const newPost = {
+      id: (communityPosts.length + 1).toString(),
+      name: "You", // Replace with the logged-in user's name
+      post: postText,
+      image: postImage ? { uri: postImage } : null,
+      profile: require("../assets/Belarmino.jpg"), // Replace with the logged-in user's profile image
+      timestamp: new Date().getTime(), // Current time
+    };
+
+    setCommunityPosts([newPost, ...communityPosts]); // Add the new post to the top of the list
+    setPostText(""); // Clear the text input
+    setPostImage(null); // Clear the selected image
+  };
+
+  // Function to calculate elapsed time
+  const getElapsedTime = (timestamp) => {
+    const now = new Date().getTime();
+    const elapsed = now - timestamp;
+
+    if (elapsed < 60000) {
+      return `${Math.floor(elapsed / 1000)} seconds ago`;
+    } else if (elapsed < 3600000) {
+      return `${Math.floor(elapsed / 60000)} minutes ago`;
+    } else if (elapsed < 86400000) {
+      return `${Math.floor(elapsed / 3600000)} hours ago`;
+    } else {
+      return `${Math.floor(elapsed / 86400000)} days ago`;
+    }
+  };
 
   return (
     <SafeAreaView style={homeStyles.container}>
-      {/* Header */}
-      <View style={homeStyles.header}>
-        <Image source={("../assets/logo.png")} style={homeStyles.logo} /> {/* Add logo asset here */}
-        <View style={homeStyles.navLinks}>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Text style={homeStyles.navText}>Home</Text>
+      {/* Create Post Section */}
+      <View style={homeStyles.createPostContainer}>
+        <View style={homeStyles.postComposer}>
+          <Image
+            source={require("../assets/Belarmino.jpg")} // Replace with the logged-in user's profile image
+            style={homeStyles.composerPic}
+          />
+          <TextInput
+            style={homeStyles.createPostInput}
+            placeholder="What's on your mind?"
+            placeholderTextColor="#999"
+            value={postText}
+            onChangeText={setPostText}
+          />
+          <TouchableOpacity onPress={handleImageChange} style={homeStyles.imageUploadLabel}>
+            <Text style={{ fontSize: 18 }}>📷</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
-            <Text style={homeStyles.navText}>Adopt Pets</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Report")}>
-            <Text style={homeStyles.navText}>Report</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Lost")}>
-            <Text style={homeStyles.navText}>Lost Pets</Text>
+          <TouchableOpacity onPress={handlePost} style={homeStyles.postButton}>
+            <Text style={homeStyles.postButtonText}>Post</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-          <Image source={require("../assets/settings.png")} style={homeStyles.settingsIcon} />
-        </TouchableOpacity>
-      </View>
-
-      {/* Search Bar */}
-      <View style={homeStyles.searchBarContainer}>
-        <TextInput
-          style={homeStyles.searchBar}
-          placeholder="What are you looking for?"
-          placeholderTextColor="#999"
-        />
-        <TouchableOpacity>
-          <Image source={null} style={homeStyles.searchIcon} /> {/* Add search icon asset here */}
-        </TouchableOpacity>
+        {postImage && (
+          <View style={homeStyles.composerPreview}>
+            <Image
+              source={{ uri: postImage }}
+              style={homeStyles.previewImage}
+            />
+          </View>
+        )}
       </View>
 
       {/* Community Posts */}
@@ -73,33 +130,21 @@ const HomeScreen = () => {
                 <Text style={homeStyles.userName}>{item.name}</Text>
                 <Text style={homeStyles.userResidence}>Residence</Text>
               </View>
-              <TouchableOpacity>
-                <Text style={homeStyles.followText}>Follow</Text>
-              </TouchableOpacity>
+              {/* Conditionally render the Follow button */}
+              {item.name !== "You" && (
+                <TouchableOpacity>
+                  <Text style={homeStyles.followText}>Follow</Text>
+                </TouchableOpacity>
+              )}
             </View>
             <View style={homeStyles.postBox}>
               <Text style={homeStyles.postText}>{item.post}</Text>
               {item.image && <Image source={item.image} style={homeStyles.postImage} />}
+              <Text style={homeStyles.timestamp}>{getElapsedTime(item.timestamp)}</Text>
             </View>
           </View>
         )}
       />
-
-      {/* Bottom Navigation */}
-      <View style={homeStyles.bottomNav}>
-        <TouchableOpacity>
-          <Image source={null} style={homeStyles.navIcon} /> {/* Add location icon asset here */}
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Messages")}>
-          <Image source={null} style={homeStyles.navIcon} /> {/* Add messages icon asset here */}
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image source={null} style={homeStyles.navIcon} /> {/* Add home icon asset here */}
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
-          <Image source={null} style={homeStyles.navIcon} /> {/* Add adopt icon asset here */}
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };

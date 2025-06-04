@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FCE8D5",
+    backgroundColor: "#FCE8D5", // Light beige background
     alignItems: "center",
     paddingTop: 20,
   },
@@ -11,16 +11,17 @@ export default StyleSheet.create({
     position: "absolute",
     top: 20,
     left: 15,
-    backgroundColor: "#000",
-    borderRadius: 20,
-    width: 35,
-    height: 35,
+    backgroundColor: "#E08989", // Match button color with edit button
+    borderRadius: 10,
+    width: 50,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
   },
   backButtonText: {
-    fontSize: 20,
+    fontSize: 16,
     color: "#fff",
+    fontWeight: "bold",
   },
   title: {
     fontSize: 24,
@@ -29,8 +30,12 @@ export default StyleSheet.create({
     color: "#4B1E35",
   },
   infoContainer: {
-    marginTop: 10,
-    width: "80%",
+    marginTop: 20,
+    width: "90%",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 15,
+    elevation: 3,
   },
   infoText: {
     fontSize: 16,
@@ -46,11 +51,12 @@ export default StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
     width: "100%",
+    backgroundColor: "#fff",
   },
   editButton: {
     backgroundColor: "#E08989",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 25,
     borderRadius: 20,
     marginTop: 20,
   },
