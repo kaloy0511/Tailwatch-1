@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Alert, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 import SettingStyles from "../StyleSheet/SettingStyles";
@@ -29,27 +29,22 @@ const SettingsScreen = ({ navigation }) => {
         <Text style={SettingStyles.settingText}>Help</Text>
       </TouchableOpacity>
 
+      {/* Home Button */}
+      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Home")}>
+        <Text style={SettingStyles.settingText}>Home</Text>
+      </TouchableOpacity>
+
+      {/* GPS Map Button */}
+      <TouchableOpacity style={SettingStyles.settingOption} onPress={() => navigation.navigate("Map")}>
+        <Text style={SettingStyles.settingText}>Location</Text>
+      </TouchableOpacity>
+
       {/* Logout Button */}
       <TouchableOpacity style={SettingStyles.settingOption} onPress={handleLogout}>
         <Text style={[SettingStyles.settingText, { color: "red" }]}>Logout</Text>
       </TouchableOpacity>
-
-      {/* GPS Map Button */}
-      <View style={styles.container}>
-        <Button
-          title="View GPS Map"
-          onPress={() => navigation.navigate("Map")} // Update to Map
-        />
-      </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    alignItems: "center",
-  },
-});
 
 export default SettingsScreen;

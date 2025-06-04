@@ -82,6 +82,41 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#2e4057",
   },
+  uploadContainer: {
+    marginVertical: 20,
+    padding: 15,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    elevation: 3,
+  },
+  uploadTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#2e4057",
+    marginBottom: 10,
+  },
+  uploadInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,
+    marginBottom: 10,
+    backgroundColor: "#f9f9f9",
+  },
+  submitButton: {
+    backgroundColor: "#2e4057",
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  submitButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
 export default styles;

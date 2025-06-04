@@ -6,15 +6,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fef6e4",
-    paddingHorizontal: 20,
-    paddingTop: 20,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#2e4057",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15, // Match HomeStyle header spacing
     paddingVertical: 15,
   },
   logo: {
@@ -31,8 +29,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   settingsIcon: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
+    resizeMode: "contain",
   },
   title: {
     fontSize: 24,

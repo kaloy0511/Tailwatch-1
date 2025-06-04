@@ -8,19 +8,18 @@ export default StyleSheet.create({
     paddingTop: 20,
   },
   backButton: {
-    position: "absolute",
-    top: 20,
-    left: 15,
-    backgroundColor: "#000",
-    borderRadius: 20,
-    width: 35,
-    height: 35,
-    justifyContent: "center",
+    flexDirection: "row",
     alignItems: "center",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: "#2e4057", // Updated to match the header color of other pages
+    borderRadius: 5,
+    marginBottom: 15,
   },
   backButtonText: {
-    fontSize: 20,
-    color: "#fff",
+    color: "#fff", // Updated to match the text color of other pages
+    fontSize: 16,
+    fontWeight: "bold",
   },
   title: {
     fontSize: 24,

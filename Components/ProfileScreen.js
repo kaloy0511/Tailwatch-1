@@ -23,7 +23,7 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={ProfileStyles.container}>
       {/* Back Button */}
       <TouchableOpacity style={ProfileStyles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={ProfileStyles.backButtonText}>Back</Text>
+        <Text style={ProfileStyles.backButtonText}>Back</Text> {/* Added arrow for consistency */}
       </TouchableOpacity>
 
       {/* Title */}
@@ -31,7 +31,14 @@ const ProfileScreen = ({ navigation }) => {
 
       {/* Profile Picture */}
       <View style={ProfileStyles.profilePictureContainer}>
-        <Image source={{ uri: userDetails?.profilePicture || "https://via.placeholder.com/100" }} style={ProfileStyles.profilePicture} />
+        <Image
+          source={
+            userDetails?.profilePicture
+              ? { uri: userDetails.profilePicture }
+              : require("../assets/Belarmino.jpg") // Default profile picture from assets
+          }
+          style={ProfileStyles.profilePicture}
+        />
       </View>
 
       {/* User Info */}

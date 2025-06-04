@@ -12,7 +12,7 @@ const pets = [
     concerns: "None",
     breed: "Pomeranian",
     description: "Energetic, trained, doesn't bite",
-    image: null, // Add image asset here
+    image:  require("../assets/dog1.jpg"),// Add image asset here
   },
   {
     id: "2",
@@ -21,7 +21,7 @@ const pets = [
     concerns: "None",
     breed: "Poodle",
     description: "Friendly, loves cuddles, playful",
-    image: null, // Add image asset here
+    image:  require("../assets/cat.jpg"), // Add image asset here
   },
 ];
 
@@ -32,7 +32,7 @@ const AdoptScreen = () => {
     <SafeAreaView style={adoptStyles.container}>
       {/* Header */}
       <View style={adoptStyles.header}>
-        <Image source={null} style={adoptStyles.logo} /> {/* Add logo asset here */}
+        <Image source={require("../assets/logo.png")} style={adoptStyles.logo} /> {/* Add logo asset here */}
         <View style={adoptStyles.navLinks}>
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Text style={adoptStyles.navText}>Home</Text>

@@ -43,13 +43,16 @@ const ReportScreen = () => {
     <View style={ReportScreenStyles.container}>
       {/* Header */}
       <View style={ReportScreenStyles.header}>
-        <Image source={null} style={ReportScreenStyles.logo} /> {/* Add logo asset */}
+        <Image source={require("../assets/logo.png")} style={ReportScreenStyles.logo} /> {/* Add logo asset */}
         <View style={ReportScreenStyles.navLinks}>
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Text style={ReportScreenStyles.navText}>Home</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Adopt")}>
             <Text style={ReportScreenStyles.navText}>Adopt Pets</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Report")}>
+            <Text style={ReportScreenStyles.navText}>Report</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Lost")}>
             <Text style={ReportScreenStyles.navText}>Lost Pets</Text>

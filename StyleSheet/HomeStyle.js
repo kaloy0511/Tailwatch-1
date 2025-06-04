@@ -109,6 +109,60 @@ const styles = StyleSheet.create({
     height: 30,
     resizeMode: "contain",
   },
+  uploadContainer: {
+    marginVertical: 15,
+    padding: 15,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    elevation: 2,
+  },
+  uploadTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#000",
+  },
+  uploadInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    fontSize: 16,
+    marginBottom: 10,
+    textAlignVertical: "top", // Align text to the top for multiline input
+  },
+  imagePickerButton: {
+    backgroundColor: "#007bff",
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  imagePickerText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  previewImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  submitButton: {
+    backgroundColor: "#007bff",
+    borderRadius: 5,
+    paddingVertical: 10,
+    alignItems: "center",
+  },
+  submitButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
 export default styles;
