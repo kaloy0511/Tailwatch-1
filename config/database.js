@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect("mongodb://localhost:27017/tailwatch", {
+    const conn = await mongoose.connect("mongodb://10.25.10.37:27017/tailwatch", { // Use your machine's IP address
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

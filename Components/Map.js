@@ -10,16 +10,16 @@ export default function Map() {
   useEffect(() => {
     const fetchGpsData = async () => {
       try {
-        const response = await fetch("http://192.168.123.51/gps"); // For Android Emulator
+        const response = await fetch("http://10.25.11.98/gps");
         if (!response.ok) {
-          throw new Error("Failed to fetch GPS data");
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         setGpsData(data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
-        Alert.alert("Error", "Failed to fetch GPS data from the Arduino server.");
+        console.error("Fetch error:", error.message);
+        Alert.alert("Error", "Failed to fetch GPS data from the server.");
         setLoading(false);
       }
     };
